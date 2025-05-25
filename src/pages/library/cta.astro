@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Support Our Work | [Your Website Name]">
+  <div class="page-container">
+    <header class="page-header">
+      <h1>Support [Your Company/Organization Name]</h1>
+      <p class="page-intro">
+        [Your Company/Organization Name] is dedicated to [briefly state your mission or purpose]. We invite you to explore our resources and engage with our work. Your support is vital to our mission and helps us continue to provide valuable content and services.
+      </p>
+    </header>
+
+    <section class="book-feature-container">
+      <h2>How You Can Support Us</h2>
+      
+      
+      <div class="book-content">
+        <div class="book-description">
+          <h3>Our Mission</h3>
+          <p>We are committed to [elaborate on your organization's goals and the value it provides]. By supporting us, you help ensure the continued availability and development of our resources, research, and community engagement efforts. There are many ways to contribute to our cause and help us grow.</p>
+        </div>
+        
+        <div class="book-cta">
+          <h3>Get Involved</h3>
+          <p>Your contribution, whether through donations, purchasing merchandise (if applicable), or simply spreading the word about our work, makes a significant difference. Learn more about how you can support [Your Website Name]:</p>
+          <a href="[Your Support Link Placeholder]" target="_blank" rel="noopener noreferrer" class="cta-button">
+            Support Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem; /* Adjusted padding */
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.6em;
+    color: #2c3e50; /* A deep, thoughtful blue */
+    margin-bottom: 0.5em;
+    font-weight: 600;
+  }
+
+  .page-intro {
+    font-size: 1.15em;
+    color: #555;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .book-feature-container {
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+  }
+
+  .book-feature-container h2 {
+    font-size: 2em; /* Adjusted from h1 */
+    color: #333;
+    margin-bottom: 0.2em;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .book-subtitle {
+    font-size: 1.1em;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2em;
+    font-style: italic;
+  }
+
+  .book-description h3, .book-cta h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-top: 1.5em;
+    margin-bottom: 0.7em;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 0.4em;
+    font-weight: 500;
+  }
+  
+  .book-description p {
+    font-size: 1.05em;
+    line-height: 1.75;
+    color: #444;
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+
+  .book-cta {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .book-cta p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 1.2em;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 12px 25px; /* Slightly adjusted padding */
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1em; /* Adjusted font size */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .cta-button:hover,
+  .cta-button:focus {
+    background-color: #0056b3; /* Darker primary blue */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    outline: none;
+  }
+</style>

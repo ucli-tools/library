@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home | Your Digital Library">
+  <h1>Welcome to Your Digital Library</h1>
+  <img src="/images/logo.png" alt="[Your Website Name] Logo" class="home-logo">
+  <p class="intro-text">
+    This is a template for your digital library. You can host and share a collection of documents, articles, or any other resources. Customize this section to describe your library's purpose and content.
+  </p>
+  <p class="intro-text">
+    Browse our collection to find valuable information and resources. Add your own content and organize it to best suit your audience.
+  </p>
+  <div class="cta-container">
+    <a href="/library" class="cta-button">Explore the Library</a>
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    color: #333;
+    font-size: 2.8em;
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
+  .intro-text {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 2em auto;
+    text-align: center;
+  }
+  .cta-container {
+    text-align: center;
+    margin-top: 2em;
+  }
+  .cta-button {
+    display: inline-block;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .cta-button:hover, .cta-button:focus {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .home-logo {
+    display: block;
+    width: 200px; /* Increased size */
+    height: 200px; /* Increased size */
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    margin: 1em auto 1.5em auto; /* Centers it and adds some margin */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+  }
+</style>

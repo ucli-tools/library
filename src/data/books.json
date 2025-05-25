@@ -1,0 +1,42 @@
+[
+  {
+    "type": "article",
+    "title": "Example Document 1",
+    "slug": "example-document-1",
+    "author": "Example Author",
+    "summary": "A placeholder summary for Example Document 1.",
+    "pdfUrl": "/pdfs/example_document_1.pdf"
+  },
+  {
+    "type": "article",
+    "title": "Example Document 2",
+    "slug": "example-document-2",
+    "author": "Example Author",
+    "summary": "A placeholder summary for Example Document 2.",
+    "pdfUrl": "/pdfs/example_document_2.pdf"
+  },
+  {
+    "type": "article",
+    "title": "Example Document 3",
+    "slug": "example-document-3",
+    "author": "Example Author",
+    "summary": "A placeholder summary for Example Document 3.",
+    "pdfUrl": "/pdfs/example_document_3.pdf"
+  },
+  {
+    "type": "article",
+    "title": "Example Document 4",
+    "slug": "example-document-4",
+    "author": "Example Author",
+    "summary": "A placeholder summary for Example Document 4.",
+    "pdfUrl": "/pdfs/example_document_4.pdf"
+  },
+  {
+    "type": "article",
+    "title": "Example Document 5",
+    "slug": "example-document-5",
+    "author": "Example Author",
+    "summary": "A placeholder summary for Example Document 5.",
+    "pdfUrl": "/pdfs/example_document_5.pdf"
+  }
+]

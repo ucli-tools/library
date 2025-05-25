@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const socialLinks = [
+  // Update these URLs with your actual social media links
+  { name: 'Youtube', url: 'https://youtube.com/@YourChannel' },
+  { name: 'Substack', url: 'https://yourname.substack.com' },
+  { name: 'X (Twitter)', url: 'https://x.com/YourProfile' },
+  { name: 'Medium', url: 'https://medium.com/@YourProfile' },
+  { name: 'GitHub', url: 'https://github.com/YourUserOrOrg' }
+];
+---
+
+<Layout title="Social Links | [Your Website Name]">
+  <style>
+    .social-links-container {
+      padding: 20px;
+    }
+    .social-links-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .social-links-list li {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    .social-links-list li a {
+      text-decoration: none;
+      color: #007bff;
+      transition: color 0.3s ease;
+    }
+    .social-links-list li a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  </style>
+  <div class="social-links-container">
+    <h1>Follow Us</h1>
+    <p>Connect with [Your Library Name] on social media (remember to update the links in the code and remove this parenthetical note):</p>
+    <ul class="social-links-list">
+      {socialLinks.map(link => (
+        <li>
+          <a href={link.url} target="_blank" rel="noopener noreferrer">
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

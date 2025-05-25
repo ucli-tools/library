@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Library Collection | [Your Website Name]">
+  <h2>Explore the [Your Website Name] Collection</h2>
+  <p>
+    [Your Website Name] offers a diverse range of materials dedicated to [Your Organization's Main Focus or Collection Theme - e.g., the study of ancient history, digital art, local historical records, etc.]. Please update this description to reflect your collection.
+  </p>
+  <p>
+    Use the sidebar navigation to explore the Library. The information conveyed is designed to support your research and broaden your understanding of fundamental questions about reality.
+  </p>
+  <h3>Getting Started</h3>
+  <p>Click on any category in the sidebar to explore its contents. "Books" will show you available articles and educational texts, including our newest additions.</p>
+  <div class="cta-container">
+    <a href="/library/books" class="cta-button">Browse the Library</a>
+  </div>
+</Layout>
+
+<style>
+  .cta-container {
+    text-align: center; /* Center the button */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff; /* Primary blue */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .cta-button:hover,
+  .cta-button:focus {
+    background-color: #0056b3; /* Darker blue on hover/focus */
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
