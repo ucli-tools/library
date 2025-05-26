@@ -1,7 +1,9 @@
-.PHONY: help all clean preview deploy lint format test doctor serve
+.DEFAULT_GOAL := help
+
+.PHONY: help all clean preview deploy lint format test doctor serve FORCE
 
 # Default target: Display help message
-help:
+help: 
 	@echo ""
 	@echo "---------------------------------------------------------------------"
 	@echo "  🚀 Welcome to the Astro Digital Library Template! 🚀"
@@ -27,9 +29,8 @@ help:
 	@echo "     - Detailed Customization Guide: \033[4mdocs/template_update.md\033[0m"
 	@echo "     - Deployment Instructions:      \033[4mdocs/deploy.md\033[0m"
 	@echo "     - Project Overview:             \033[4mREADME.md\033[0m"
-
 	@echo ""
-	@echo "  Available `make` commands:"
+	@echo "  Available \`make\` commands:"
 	@echo "  --------------------------"
 	@echo "  make help         : Show this help message."
 	@echo "  make setup        : Run the interactive template setup script."
@@ -44,14 +45,13 @@ help:
 	@echo "  make test         : Run automated tests."
 	@echo "  make doctor       : Run Astro's diagnostic tool (astro check)."
 	@echo "  make clean        : Remove 'node_modules' and 'dist' directories."
-
 	@echo ""
 	@echo "  Happy library building!"
 	@echo "---------------------------------------------------------------------"
 	@echo ""
 
-# Alias 'all' to 'help' for convenience, making 'make' or 'make all' show the help.
-all: help
+# The 'all' target (previously aliased to 'help') has been removed
+# as 'help' is already the default goal.
 
 # You can add other common project commands here if desired:
 # For example:
@@ -108,5 +108,5 @@ doctor:
 serve:
 	@echo "Serving the 'dist' directory (production build)..."
 	@echo "Make sure you have run 'make build' first."
-	@echo "Access at http://localhost:8080 (usually, or check http-server output)"
+	@echo "Access at http://localhost:4321 (usually, or check http-server output)"
 	@npx http-server ./dist -o
