@@ -1,0 +1,131 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import libraryContent from '../../../data/library_content.json';
+const category4Items = Array.isArray(libraryContent.category4) ? libraryContent.category4 : [];
+---
+
+<Layout title="Category 4 | [Your Library Name]" currentPage="/library/category4/">
+  <div class="cta-page">
+    <div class="cta-header">
+      <h1>Category 4</h1>
+      <p class="cta-intro">This is your call-to-action section. Use this space to promote your premium content, products, or services.</p>
+    </div>
+
+    <div class="cta-content">
+      <h2>Ready to Take the Next Step?</h2>
+      <p>Discover our premium resources and exclusive content. Whether you're looking for advanced materials, personalized support, or specialized tools, we have something for you.</p>
+      
+      <p>Join thousands of satisfied customers who have already transformed their [field/industry] with our proven methods and expert guidance.</p>
+      
+      <div class="cta-action">
+        <a href="https://yourlinkexample.com" class="cta-button" target="_blank">Get Started Today</a>
+      </div>
+      
+      <p class="cta-note">Questions? <a href="/contact">Contact us</a> or learn more about our <a href="https://yourlinkexample.com/donate" target="_blank">mission and how to support us</a>.</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Simple CTA layout styles */
+  .cta-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .cta-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cta-header h1 {
+    font-size: 2.5em;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .cta-intro {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2em;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .cta-content p {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-action {
+    margin: 3rem 0;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--link-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+
+  .cta-button:hover {
+    background: var(--link-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  }
+
+  .cta-note {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin-top: 2rem;
+  }
+
+  .cta-note a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  .cta-note a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .cta-header h1 {
+      font-size: 2em;
+    }
+    
+    .cta-content h2 {
+      font-size: 1.7em;
+    }
+    
+    .cta-button {
+      font-size: 1.1em;
+      padding: 14px 28px;
+    }
+  }
+</style>

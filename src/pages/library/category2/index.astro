@@ -1,0 +1,91 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import libraryContent from '../../../data/library_content.json';
+const category2Items = Array.isArray(libraryContent.category2) ? libraryContent.category2 : [];
+---
+<Layout title="Category 2 | [Your Library Name]" currentPage="/library/category2/">
+  <div class="category-page">
+    <h1>Category 2</h1>
+    <p class="intro-text"><em>Description for your second category of content.</em></p>
+    <p class="intro-text">This section contains your second type of content. Customize this description to match your needs.</p>
+    
+    <div class="item-grid">
+      {category2Items.map(item => (
+        <a href={`/library/category2/${item.slug}`} class="item-card book-card">
+          <h4>{item.title}</h4>
+          {item.author && <p class="author"><em>By: {item.author}</em></p>}
+          <p class="summary">{item.summary.substring(0, 100)}{item.summary.length > 100 ? '...' : ''}</p>
+          <span class="read-more">Read More &rarr;</span>
+        </a>
+      ))}
+      {category2Items.length === 0 && (
+        <p>No content available in this category yet. Add your content to get started!</p>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Styles are identical to explorations/index.astro */
+  .category-page h1 {
+    margin-bottom: 1.5rem; /* Increased bottom margin */
+    font-size: 2.4em; /* Slightly larger heading */
+    text-align: center; /* Center the main heading */
+    color: #222; /* Darker heading color */
+  }
+  .category-page .intro-text {
+    margin-bottom: 1.5rem; 
+    font-size: 1.15em; /* Slightly larger intro text */
+    color: #444; /* Slightly lighter than heading, but still dark */
+    max-width: 75ch; /* Optimal line length for readability */ 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center; /* Center the introductory paragraphs */
+    line-height: 1.7; /* Improved line spacing for readability */
+  }
+  .category-page .intro-text:nth-of-type(2) { /* Target the second intro paragraph specifically for bottom margin */
+    margin-bottom: 2.5rem; /* More space before item grid */
+  }
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .item-card {
+    display: block;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .item-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+  }
+  .item-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.3em;
+    color: #007bff;
+  }
+  .item-card .author {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 0.75rem;
+  }
+  .item-card .summary {
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #495057;
+  }
+  .read-more {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 0.9em;
+  }
+</style>

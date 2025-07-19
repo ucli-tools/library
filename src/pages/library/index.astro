@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const ctaSections = [
+  { href: '/library/category1/', text: 'Description for your first category of content.', title: 'Category 1' },
+  { href: '/library/category2/', text: 'Description for your second category of content.', title: 'Category 2' },
+  { href: '/library/category3/', text: 'Description for your third category of content.', title: 'Category 3' },
+  { href: '/library/category4/', text: 'Description for your fourth category of content.', title: 'Category 4' }
+];
+---
+
+<Layout title="Library Collection | [Your Library Name]">
+  <div class="library-welcome-page">
+    <h2>Explore the [Your Library Name] Collection</h2>
+    <p class="intro-text">
+      The [Your Library Name] offers a diverse range of materials organized into categories that suit your interests and needs.
+    </p>
+    <p class="intro-text">
+      Explore our main sections below to discover content that matches your learning goals and interests.
+    </p>
+    
+    <div class="item-grid cta-grid">
+      {ctaSections.map(item => (
+        <a href={item.href} class="item-card cta-item">
+          <h4>{item.title}</h4>
+          <p class="cta-text"><em>{item.text}</em></p>
+          <span class="explore-link">Explore {item.title} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .library-welcome-page h2 {
+    margin-bottom: 1.5rem; /* Increased bottom margin */
+    font-size: 2.4em; /* Slightly larger heading */
+    text-align: center; /* Center the main heading */
+    color: #222; /* Darker heading color */
+  }
+  .library-welcome-page .intro-text {
+    margin-bottom: 1.5rem; 
+    font-size: 1.15em; /* Slightly larger intro text */
+    color: #444; /* Slightly lighter than heading, but still dark */
+    max-width: 75ch; /* Optimal line length for readability */ 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center; /* Center the introductory paragraphs */
+    line-height: 1.7; /* Improved line spacing for readability */
+  }
+
+  .library-welcome-page .intro-text:last-of-type {
+    margin-bottom: 2.5rem; /* More space before CTAs */
+  }
+
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-grid {
+      grid-template-columns: repeat(2, 1fr); /* Prefer 2 columns for 4 items on larger screens */
+    }
+  }
+
+  .item-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    min-height: 180px; 
+  }
+
+  .item-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+  }
+
+  .item-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5em; 
+    color: #007bff;
+    font-weight: 600;
+  }
+
+  .item-card .cta-text {
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #333;
+    flex-grow: 1; 
+  }
+  
+  .item-card .explore-link {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 0.95em;
+    align-self: flex-start; 
+    margin-top: auto; 
+  }
+</style>
