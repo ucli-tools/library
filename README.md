@@ -174,7 +174,3 @@ Start by running `make help` to see all available commands, then `make setup-tem
 ## 📞 Contact
 
 For questions about this template, please open an issue on GitHub or contact the maintainers.
-
-## Code
-
-For an open-source version of the Library, check the [UCLI-Tools Library](https://github.com/ucli-tools/library).
