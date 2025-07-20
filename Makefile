@@ -1,7 +1,7 @@
 # Universalis Library Template Makefile
 # Integrates with the complete Universalis ecosystem
 
-.PHONY: help install dev build build-content build-pdf build-audio build-epub build-all setup-template clean
+.PHONY: help install dev build build-content build-pdf build-audio build-epub build-all setup-template setup-template-manual build-config clean
 
 # Default target
 help:
@@ -17,7 +17,9 @@ help:
 	@echo "  build-audio    - Generate audiobooks only (requires mdaudiobook)"
 	@echo "  build-epub     - Generate ePubs only (requires mdepub)"
 	@echo "  build-all      - Generate all formats + build site"
-	@echo "  setup-template - Interactive template customization"
+	@echo "  setup-template        - Interactive template customization"
+	@echo "  setup-template manual - Create config files for manual editing"
+	@echo "  build-config          - Apply configuration changes"
 	@echo "  clean          - Clean generated files"
 	@echo ""
 	@echo "Ecosystem Integration:"
@@ -28,7 +30,7 @@ help:
 install:
 	npm install
 
-dev: install
+dev: install build-config-if-needed
 	npm run dev
 
 build: install
@@ -81,17 +83,25 @@ build-epub:
 build-all: build-content build
 	@echo "✅ Complete build finished!"
 
-# Template customization
+# Template configuration system
 setup-template:
-	@echo "🎯 Setting up your custom library..."
-	@if [ -f "scripts/setup-template.js" ]; then \
-		node scripts/setup-template.js; \
+	@echo "🎯 Interactive library setup..."
+	@node scripts/setup-template.js
+
+setup-template-manual:
+	@echo "📝 Creating configuration files for manual editing..."
+	@node scripts/setup-template.js manual
+
+build-config:
+	@echo "🔧 Building configuration..."
+	@node scripts/build-config.js
+
+build-config-if-needed:
+	@if [ -f "library-config/branding.yaml" ]; then \
+		echo "🔧 Applying configuration..."; \
+		node scripts/build-config.js; \
 	else \
-		echo "⚠️  Interactive setup not yet implemented"; \
-		echo "💡 For now, manually edit:";\
-		echo "   - README.md (update name and description)"; \
-		echo "   - public/images/library_logo.png (replace with your logo)"; \
-		echo "   - content/ (add your markdown files)"; \
+		echo "ℹ️  No configuration found, using defaults"; \
 	fi
 
 # Cleanup

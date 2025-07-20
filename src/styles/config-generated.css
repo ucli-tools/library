@@ -1,0 +1,64 @@
+/* Generated CSS Variables - DO NOT EDIT MANUALLY */
+/* Edit library-config/branding.yaml and run 'make build-config' to regenerate */
+
+:root {
+  /* Library branding */
+  --library-name: "[Your Library Name]";
+  --library-tagline: "Knowledge at your fingertips";
+  
+  /* Colors */
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --background-color: #ffffff;
+  --text-color: #1e293b;
+  --accent-color: #f59e0b;
+  --link-color: var(--primary-color);
+  
+  /* Typography */
+  --font-primary: Inter, system-ui, sans-serif;
+  --font-heading: Inter, system-ui, sans-serif;
+  --font-code: JetBrains Mono, Consolas, monospace;
+  --font-size-base: 16px;
+  --line-height: 1.6;
+  
+  /* Logo */
+  --logo-width: 200px;
+  --logo-height: auto;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --background-color: #0f172a;
+  --text-color: #e2e8f0;
+  --secondary-color: #64748b;
+}
+
+/* Apply typography */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+code, pre {
+  font-family: var(--font-code);
+}
+
+/* Apply colors */
+a {
+  color: var(--link-color);
+}
+
+.primary-bg {
+  background-color: var(--primary-color);
+}
+
+.accent-bg {
+  background-color: var(--accent-color);
+}

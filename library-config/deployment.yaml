@@ -1,0 +1,52 @@
+# Deployment Configuration for Your Digital Library
+# Configure domain, analytics, SEO, and deployment settings
+
+# Domain and URL settings
+domain: "yourlibrary.com"                    # Your custom domain (optional)
+base_url: "https://yourlibrary.com"          # Full base URL for your library
+subdomain: "my-library"                      # GitHub Pages subdomain (username.github.io/subdomain)
+
+# SEO and metadata
+seo:
+  meta_description: "My personal digital library - a curated collection of knowledge and insights"
+  keywords: ["digital library", "knowledge", "research", "books", "articles"]
+  author: "[Your Name]"
+  language: "en"
+  robots: "index, follow"
+  
+# Social media and sharing
+social:
+  twitter_handle: "@yourusername"            # Your Twitter handle (optional)
+  og_image: "assets/social-preview.png"      # Open Graph image for social sharing
+  og_type: "website"
+  
+# Analytics (optional)
+analytics:
+  google_analytics: ""                       # Google Analytics measurement ID (G-XXXXXXXXXX)
+  google_tag_manager: ""                     # Google Tag Manager ID (GTM-XXXXXXX)
+  plausible_domain: ""                       # Plausible analytics domain
+  umami_website_id: ""                       # Umami analytics website ID
+  
+# GitHub Pages deployment
+github_pages:
+  enabled: true                              # Enable GitHub Pages deployment
+  branch: "gh-pages"                         # Deployment branch
+  cname: true                                # Create CNAME file for custom domain
+  
+# Build and deployment settings
+build:
+  output_dir: "dist"                         # Build output directory
+  base_path: "/"                             # Base path for URLs (use "/subdirectory/" if deployed in subdirectory)
+  
+# Performance and optimization
+performance:
+  minify_html: true                          # Minify HTML output
+  minify_css: true                           # Minify CSS output
+  minify_js: true                            # Minify JavaScript output
+  optimize_images: true                      # Optimize image assets
+  
+# Security headers (for advanced users)
+security:
+  content_security_policy: false            # Enable CSP headers
+  x_frame_options: "SAMEORIGIN"             # X-Frame-Options header
+  x_content_type_options: "nosniff"         # X-Content-Type-Options header

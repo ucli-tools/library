@@ -1,14 +1,125 @@
 ---
+// Generated from library-config/pages/about.md
+// Edit the markdown file and run 'make build-config' to regenerate
 import Layout from '../layouts/Layout.astro';
+
+const htmlContent = `<h1>About This Library</h1>
+<p>Welcome to my digital library! This is a curated collection of my thoughts, research, and insights on topics that matter to me.</p>
+<h2>My Mission</h2>
+<p>I believe that knowledge grows when shared. This library represents my commitment to making valuable information accessible and building a community around learning and discovery.</p>
+<h2>What You&#39;ll Find Here</h2>
+<ul>
+<li><strong>In-depth research</strong> on topics I&#39;m passionate about</li>
+<li><strong>Practical guides</strong> based on real-world experience</li>
+<li><strong>Thoughtful analysis</strong> of complex subjects</li>
+<li><strong>Resources and references</strong> to help you dive deeper</li>
+</ul>
+<h2>About Me</h2>
+<p>[Write a brief bio about yourself here. Include your background, expertise, and what drives your passion for knowledge sharing.]</p>
+<p>I&#39;m passionate about [your interests/expertise areas]. When I&#39;m not researching and writing, you can find me [personal interests/hobbies].</p>
+<h2>How This Library Works</h2>
+<p>This digital library is built using the Universalis ecosystem, which allows me to:</p>
+<ul>
+<li>Write content in simple markdown format</li>
+<li>Generate professional PDFs automatically</li>
+<li>Create audiobook versions of my content</li>
+<li>Maintain a beautiful, searchable web interface</li>
+</ul>
+<h2>Get in Touch</h2>
+<p>I&#39;d love to hear from you! Whether you have questions, suggestions, or just want to connect, feel free to <a href="/contact/">reach out</a>.</p>
+<h2>Support This Work</h2>
+<p>If you find value in this library, consider:</p>
+<ul>
+<li>Sharing content that resonates with you</li>
+<li>Providing feedback and suggestions</li>
+<li><a href="https://yourwebsite.com/support">Supporting my work</a> (if applicable)</li>
+</ul>
+<hr>
+<p><em>This library is continuously growing. Check back regularly for new content and updates!</em></p>
+`;
 ---
 
-<Layout title="About Us | [Your Library Name]">
-  <h1>About The [Your Organization] and Library</h1>
-  
-  <h2>The [Your Organization]</h2>
-  <p>The [Your Organization] is dedicated to [your mission/field of work]. Our mission is to [describe your organization's purpose and goals]. We focus on [your areas of expertise/interest] and strive to [your organizational objectives].</p>
-  
-  <h2>The [Your Library Name]</h2>
-  <p>The [Your Library Name] serves as a digital repository supporting [Your Organization]'s mission. It provides access to a curated collection of texts, articles, and other educational materials related to our areas of focus. We aim to be a valuable resource for students, researchers, and anyone interested in [your subject areas].</p>
-  <p>Our digital shelves are open to all who seek to deepen their understanding of [your topics] and to engage with the knowledge we've gathered and organized for the community.</p>
+<Layout title="About | [Your Library Name]" currentPage="/about/">
+  <div class="content-page">
+    <div class="markdown-content" set:html={htmlContent}>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .content-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .markdown-content {
+    line-height: 1.7;
+  }
+  
+  .markdown-content h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .markdown-content h2 {
+    color: var(--text-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content h3 {
+    color: var(--secondary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .markdown-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content ul, .markdown-content ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+  
+  .markdown-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown-content a {
+    color: var(--link-color);
+    text-decoration: underline;
+  }
+  
+  .markdown-content a:hover {
+    opacity: 0.8;
+  }
+  
+  .markdown-content code {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+  
+  .markdown-content pre {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  .markdown-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--secondary-color);
+  }
+</style>

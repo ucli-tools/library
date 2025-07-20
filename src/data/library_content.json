@@ -1,7 +1,7 @@
 {
   "category1": [
     {
-      "type": "introduction",
+      "type": "book",
       "title": "Introduction to Category 1",
       "slug": "introduction-to-category1",
       "author": "[Your Name]",
@@ -10,7 +10,7 @@
       "markdownUrl": "/content/category1/introduction-to-category1.md"
     },
     {
-      "type": "example",
+      "type": "article",
       "title": "Mathematical Concepts Example",
       "slug": "mathematics-example",
       "author": "[Your Name]",
@@ -43,7 +43,7 @@
   ],
   "category4": [
     {
-      "type": "resource",
+      "type": "article",
       "title": "Specialized Resource: Template Customization Reference",
       "slug": "specialized-resource",
       "author": "[Your Name]",
