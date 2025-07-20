@@ -8,6 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import readline from 'readline';
 
 class TemplateReset {
   constructor() {
@@ -52,7 +53,7 @@ class TemplateReset {
 
   async confirmReset() {
     return new Promise((resolve) => {
-      const readline = require('readline');
+      // readline is already imported at the top
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout

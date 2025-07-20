@@ -33,13 +33,14 @@ ucli build mdtexpdf mdaudiobook mdepub
 
 ### 4. Customize Your Library
 ```bash
-# Start the interactive setup (coming soon)
+# Interactive setup - guided customization
 make setup-template
 
-# Or manually customize:
-# - Replace public/images/library_logo.png with your logo
-# - Edit this README.md with your information
-# - Add your content to the content/ directory
+# Or create config files for manual editing
+make setup-template-manual
+
+# Apply your configuration changes
+make build-config
 ```
 
 ### 5. Add Your Content
@@ -104,8 +105,108 @@ your-library/
 | `make build-audio`   | Generate audiobooks only (requires mdaudiobook) |
 | `make build-epub`    | Generate ePubs only (requires mdepub)           |
 | `make build-all`     | Generate all formats + build website            |
-| `make setup-template`| Interactive template customization              |
-| `make clean`         | Clean generated files                           |
+| `make setup-template`        | Interactive template customization      |
+| `make setup-template-manual` | Create config files for manual editing |
+| `make build-config`          | Apply configuration changes             |
+| `make reset-template`        | Reset to default template state         |
+| `make clean`                 | Clean generated files                   |
+
+## 🎨 Template Customization Workflow
+
+This template uses a **configuration-driven approach** that makes customization safe and reversible:
+
+### 🚀 Getting Started with Customization
+
+```bash
+# Option 1: Interactive setup (recommended for beginners)
+make setup-template
+# Follow the prompts to customize colors, fonts, branding, etc.
+
+# Option 2: Manual configuration (for advanced users)
+make setup-template-manual
+# Edit files in library-config/ directory manually
+```
+
+### 📁 Configuration Structure
+
+After running setup, you'll have a `library-config/` directory:
+
+```
+library-config/
+├── branding.yaml          # Colors, fonts, logo, library name
+├── deployment.yaml        # Domain, SEO, analytics settings
+├── library-structure.md   # Content organization (TOC)
+├── pages/                 # Static pages (about, contact, etc.)
+│   ├── about.md
+│   ├── contact.md
+│   ├── privacy.md
+│   └── terms.md
+└── assets/               # Your logo, favicon, etc.
+    └── README.md
+```
+
+### 🔄 Safe Experimentation
+
+**The beauty of this system**: You can experiment without fear!
+
+```bash
+# Make changes to your config
+vim library-config/branding.yaml
+
+# Apply changes
+make build-config
+
+# Test your changes
+make dev
+
+# Don't like the result? Reset to clean template!
+make reset-template
+# ↑ This restores everything to the original working state
+```
+
+### 🛡️ Recovery and Reset
+
+The `make reset-template` command is your **"panic button"**:
+
+- ✅ **Safe**: Preserves your content in `content/` directory
+- ✅ **Complete**: Removes all customizations and generated files
+- ✅ **Automatic**: Rebuilds everything to working template state
+- ✅ **Confirmed**: Asks for confirmation before making changes
+
+**When to use reset:**
+- You want to start customization over from scratch
+- Something went wrong during customization
+- You want to update to a newer version of the template
+- You're experimenting and want a clean slate
+
+### 🔄 Complete Workflow Example
+
+```bash
+# 1. Start with clean template
+make dev  # See the default example library
+
+# 2. Customize your library
+make setup-template
+# (Follow prompts to set colors, branding, etc.)
+
+# 3. Apply and test
+make build-config
+make dev  # See your customized library
+
+# 4. Add your content
+# Edit files in content/ directory
+# Update library-config/library-structure.md
+
+# 5. Build everything
+make build-all
+
+# 6. Deploy
+git add . && git commit -m "My customized library"
+git push origin main
+
+# 7. Want to start over? No problem!
+make reset-template  # Back to clean template
+```
 
 ## 🔧 Ecosystem Integration
 
