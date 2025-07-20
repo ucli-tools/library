@@ -11,5 +11,9 @@
   "dependencies": {
     "astro": "^5.8.0",
     "pdfjs-dist": "^5.2.133"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "marked": "^16.1.1"
   }
 }

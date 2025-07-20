@@ -1,0 +1,55 @@
+# Branding Configuration for Your Digital Library
+# Edit these values to customize your library's appearance and branding
+
+library:
+  name: "[Your Library Name]"
+  tagline: "Knowledge at your fingertips"
+  description: "A curated collection of thoughts, research, and insights"
+  author: "[Your Name]"
+  organization: "[Your Organization]"
+  website: "https://yourwebsite.com"
+
+# Color scheme - choose a preset theme or customize individual colors
+theme: "blue-professional"  # Options: blue-professional, green-academic, purple-creative, orange-warm, gray-minimal
+
+# Override specific colors (optional)
+colors:
+  # primary: "#2563eb"      # Uncomment to override theme colors
+  # secondary: "#64748b"
+  # background: "#ffffff"
+  # text: "#1e293b"
+  # accent: "#f59e0b"
+
+# Typography settings
+typography:
+  primary_font: "Inter, system-ui, sans-serif"
+  heading_font: "Inter, system-ui, sans-serif"
+  code_font: "JetBrains Mono, Consolas, monospace"
+  font_size_base: "16px"
+  line_height: "1.6"
+
+# Logo and visual assets
+logo:
+  path: "assets/logo.png"           # Path to your logo file
+  width: "200px"                    # Logo width in navigation
+  height: "auto"                    # Logo height (auto maintains aspect ratio)
+  favicon: "assets/favicon.ico"     # Path to favicon (will be auto-generated if not provided)
+  social_preview: "assets/social-preview.png"  # Social media preview image
+
+# Navigation settings
+navigation:
+  show_search: true                 # Enable/disable search functionality
+  show_theme_toggle: true           # Enable/disable dark/light mode toggle
+  custom_links:                     # Additional navigation links
+    - name: "Blog"
+      url: "https://yourblog.com"
+      external: true
+    - name: "Newsletter"
+      url: "/newsletter"
+      external: false
+
+# Footer settings
+footer:
+  show_social_links: true
+  show_rss: true
+  custom_text: "Built with ❤️ using the Universalis Library Template"

@@ -1,12 +1,137 @@
 ---
+// Generated from library-config/pages/contact.md
+// Edit the markdown file and run 'make build-config' to regenerate
 import Layout from '../layouts/Layout.astro';
+
+const htmlContent = `<h1>Contact Me</h1>
+<p>I&#39;d love to hear from you! Whether you have questions about my work, suggestions for new content, or just want to connect, there are several ways to reach me.</p>
+<h2>Get in Touch</h2>
+<h3>Email</h3>
+<p>The best way to reach me is via email: <strong><a href="mailto:your.email@example.com">your.email@example.com</a></strong></p>
+<p>I try to respond to all emails within 48 hours. Please be patient if you don&#39;t hear back immediately!</p>
+<h3>Social Media</h3>
+<p>Connect with me on social platforms:</p>
+<ul>
+<li><strong>Twitter/X</strong>: <a href="https://twitter.com/yourusername">@yourusername</a></li>
+<li><strong>LinkedIn</strong>: <a href="https://linkedin.com/in/yourprofile">Your Name</a></li>
+<li><strong>Mastodon</strong>: <a href="https://mastodon.social/@yourusername">@yourusername@mastodon.social</a></li>
+</ul>
+<h3>Website</h3>
+<p>Visit my main website: <strong><a href="https://yourwebsite.com">yourwebsite.com</a></strong></p>
+<h2>What to Expect</h2>
+<p>When you reach out, here&#39;s what you can expect:</p>
+<ul>
+<li><strong>Questions about content</strong>: I&#39;m happy to clarify or expand on anything in my library</li>
+<li><strong>Collaboration opportunities</strong>: Always interested in connecting with like-minded individuals</li>
+<li><strong>Feedback and suggestions</strong>: Your input helps me improve and create better content</li>
+<li><strong>Speaking engagements</strong>: Available for talks, workshops, and interviews</li>
+</ul>
+<h2>Response Times</h2>
+<ul>
+<li><strong>Email</strong>: Within 48 hours</li>
+<li><strong>Social media</strong>: Within 24 hours for direct messages</li>
+<li><strong>Comments</strong>: I check and respond regularly</li>
+</ul>
+<h2>Topics I Love Discussing</h2>
+<ul>
+<li>[List your areas of expertise/interest]</li>
+<li>[Research methodologies]</li>
+<li>[Knowledge sharing and digital libraries]</li>
+<li>[Any specific topics related to your content]</li>
+</ul>
+<h2>Not Sure What to Say?</h2>
+<p>Here are some conversation starters:</p>
+<ul>
+<li>&quot;I really enjoyed your piece on [topic]. Have you considered exploring [related topic]?&quot;</li>
+<li>&quot;I&#39;m working on [project] and would love your perspective on [specific aspect]&quot;</li>
+<li>&quot;What resources would you recommend for someone just starting with [topic]?&quot;</li>
+</ul>
+<hr>
+<p><em>Looking forward to connecting with you!</em></p>
+`;
 ---
 
-<Layout title="Contact Us | [Your Library Name]">
-  <h1>Contact The [Your Organization]</h1>
-  <p>If you have any questions about the [Your Library Name], our content, or [Your Organization]'s work, please feel free to reach out to us.</p>
-  <ul>
-    <li><strong>General Inquiries & Support:</strong> <a href="mailto:admin@yourdomain.com">admin@yourdomain.com</a></li>
-  </ul>
-  <p>We aim to respond to all inquiries as promptly as possible.</p>
+<Layout title="Contact | [Your Library Name]" currentPage="/contact/">
+  <div class="content-page">
+    <div class="markdown-content" set:html={htmlContent}>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .content-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .markdown-content {
+    line-height: 1.7;
+  }
+  
+  .markdown-content h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .markdown-content h2 {
+    color: var(--text-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content h3 {
+    color: var(--secondary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .markdown-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-content ul, .markdown-content ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+  
+  .markdown-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown-content a {
+    color: var(--link-color);
+    text-decoration: underline;
+  }
+  
+  .markdown-content a:hover {
+    opacity: 0.8;
+  }
+  
+  .markdown-content code {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+  
+  .markdown-content pre {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  .markdown-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--secondary-color);
+  }
+</style>
