@@ -1,24 +1,24 @@
 ---
+# Common metadata
 title: "Working with Articles in Category 2"
 author: "Library Author"
 date: "2024-01-20"
 description: "Learn how to create and organize article-style content in your digital library. This example shows best practices for shorter-form content."
 
+# PDF settings
 format: "article"
-section: "category2"
-
-no_numbers: false
-
+no_numbers: true
 header_footer_policy: "all"
-footer: " 2024 Your Digital Library. All rights reserved."
+footer: "© 2024 Your Digital Library. All rights reserved."
 pageof: true
 date_footer: true
 
+# Library metadata
 type: "article"
 category: "category2"
 slug: "working-with-articles"
 summary: "Learn how to create and organize article-style content in your digital library. This example shows best practices for shorter-form content."
-tags: ["articles", "category2", "writing", "example"]
+tags: ["articles", "category2", "content-creation"]
 
 ---
 

@@ -7,9 +7,9 @@ description: "An example document demonstrating proper mathematical formatting f
 
 # PDF settings
 format: "article"
-no_numbers: false
+no_numbers: true
 header_footer_policy: "all"
-footer: " 2024 Your Digital Library. All rights reserved."
+footer: "© 2024 Your Digital Library. All rights reserved."
 pageof: true
 date_footer: true
 

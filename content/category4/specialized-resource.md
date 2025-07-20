@@ -1,9 +1,24 @@
 ---
+# Common metadata
 title: "Specialized Resource: Template Customization Reference"
 author: "Library Author"
 date: "2024-01-30"
 description: "A specialized reference guide for advanced template customization. This Category 4 example shows how to create comprehensive reference materials."
+
+# PDF settings
+format: "guide"
+no_numbers: true
+header_footer_policy: "all"
+footer: "© 2024 Your Digital Library. All rights reserved."
+pageof: true
+date_footer: true
+
+# Library metadata
+type: "guide"
 category: "category4"
+slug: "specialized-resource"
+summary: "A specialized reference guide for advanced template customization. This Category 4 example shows how to create comprehensive reference materials."
+tags: ["reference", "category4", "customization", "advanced"]
 ---
 
 # Specialized Resource: Template Customization Reference

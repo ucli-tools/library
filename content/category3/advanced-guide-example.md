@@ -1,24 +1,28 @@
 ---
+# Common metadata
 title: "Advanced Guide: Building Your Content Strategy"
 author: "Library Author"
 date: "2024-01-25"
 description: "An advanced guide demonstrating how to create comprehensive content strategies for your digital library. Perfect for Category 3 content."
 
+# PDF settings
 format: "guide"
-section: "category3"
-
-no_numbers: false
-
+no_numbers: true
 header_footer_policy: "all"
-footer: " 2024 Your Digital Library. All rights reserved."
+footer: "© 2024 Your Digital Library. All rights reserved."
 pageof: true
 date_footer: true
 
+# Library metadata
 type: "guide"
 category: "category3"
 slug: "advanced-guide-example"
 summary: "An advanced guide demonstrating how to create comprehensive content strategies for your digital library. Perfect for Category 3 content."
-tags: ["advanced", "strategy", "category3", "guide", "planning"]
+tags: ["guide", "category3", "strategy", "advanced"]
+
+# Section metadata
+section: "category3"
+
 ---
 
 # Advanced Guide: Building Your Content Strategy
