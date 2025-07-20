@@ -93,11 +93,22 @@ Content begins here...
 ```
 
 **Key Points:**
-- Use simple `# Comment` format, not complex visual separators
-- Keep metadata clean and readable
-- Include `pageof: true` for "x/y" page numbering format
-- Set `date_footer: true` to show date in footer
+- Use simple `# Comment` format, not complex visual separators like `=====`
+- Keep metadata clean and readable - avoid excessive visual formatting
+- Include `pageof: true` for "x/y" page numbering format instead of just page numbers
+- Set `date_footer: true` to show date in footer (not `date_footer: "DD/MM/YY"`)
 - Use `header_footer_policy: "all"` for consistent headers/footers
+- Set `no_numbers: true` to disable section numbering for cleaner output
+- Always include proper `footer` with copyright and organization info
+- **IMPORTANT**: Use `format: "article"` for content without title pages (cleaner, simpler layout)
+- Use `format: "book"` for longer works that need title pages and book-style formatting
+- Note: `format` controls PDF layout style, while `type` is for library web interface categorization
+
+**Current Limitation**: `header_footer_policy: "all"` forces book-style output even with `format: "article"`. This is a known mdtexpdf limitation that will be enhanced in future versions. For now:
+- Use `header_footer_policy: "all"` for professional headers/footers (accepts book-style output)
+- Omit `header_footer_policy` for true article-style formatting (basic headers/footers)
+
+**Critical:** Avoid duplicate keys in YAML (e.g., two `date_footer` entries) as this causes warnings
 
 ### Spacing Requirements
 

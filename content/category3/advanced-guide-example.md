@@ -6,7 +6,7 @@ date: "2024-01-25"
 description: "An advanced guide demonstrating how to create comprehensive content strategies for your digital library. Perfect for Category 3 content."
 
 # PDF settings
-format: "guide"
+format: "article"
 no_numbers: true
 header_footer_policy: "all"
 footer: "© 2024 Your Digital Library. All rights reserved."

@@ -6,6 +6,7 @@ date: "2024-01-15"
 description: "A comprehensive introduction to the concepts and ideas in Category 1. This example demonstrates how to structure content for your digital library."
 
 # PDF settings
+format: "article"
 no_numbers: true
 header_footer_policy: "all"
 footer: "© 2024 Your Digital Library. All rights reserved."

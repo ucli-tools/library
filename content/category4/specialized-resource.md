@@ -6,7 +6,7 @@ date: "2024-01-30"
 description: "A specialized reference guide for advanced template customization. This Category 4 example shows how to create comprehensive reference materials."
 
 # PDF settings
-format: "guide"
+format: "article"
 no_numbers: true
 header_footer_policy: "all"
 footer: "© 2024 Your Digital Library. All rights reserved."
