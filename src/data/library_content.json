@@ -1,22 +1,24 @@
 {
   "category1": [
     {
-      "type": "book",
+      "type": "article",
       "title": "Introduction to Category 1",
       "slug": "introduction-to-category1",
-      "author": "[Your Name]",
+      "author": "Library Author",
       "summary": "A comprehensive introduction to the concepts and ideas in Category 1. This example demonstrates how to structure content for your digital library.",
       "pdfUrl": "/pdfs/category1/introduction-to-category1.pdf",
-      "markdownUrl": "/content/category1/introduction-to-category1.md"
+      "markdownUrl": "/content/category1/introduction-to-category1.md",
+      "hasContent": true
     },
     {
       "type": "article",
       "title": "Mathematical Concepts Example",
       "slug": "mathematics-example",
-      "author": "[Your Name]",
+      "author": "Library Author",
       "summary": "An example document demonstrating proper mathematical formatting for LaTeX/PDF generation using the AI prompt conventions.",
       "pdfUrl": "/pdfs/category1/mathematics-example.pdf",
-      "markdownUrl": "/content/category1/mathematics-example.md"
+      "markdownUrl": "/content/category1/mathematics-example.md",
+      "hasContent": true
     }
   ],
   "category2": [
@@ -24,10 +26,11 @@
       "type": "article",
       "title": "Working with Articles in Category 2",
       "slug": "working-with-articles",
-      "author": "[Your Name]",
+      "author": "Library Author",
       "summary": "Learn how to create and organize article-style content in your digital library. This example shows best practices for shorter-form content.",
       "pdfUrl": "/pdfs/category2/working-with-articles.pdf",
-      "markdownUrl": "/content/category2/working-with-articles.md"
+      "markdownUrl": "/content/category2/working-with-articles.md",
+      "hasContent": true
     }
   ],
   "category3": [
@@ -35,10 +38,11 @@
       "type": "guide",
       "title": "Advanced Guide: Building Your Content Strategy",
       "slug": "advanced-guide-example",
-      "author": "[Your Name]",
+      "author": "Library Author",
       "summary": "An advanced guide demonstrating how to create comprehensive content strategies for your digital library. Perfect for Category 3 content.",
       "pdfUrl": "/pdfs/category3/advanced-guide-example.pdf",
-      "markdownUrl": "/content/category3/advanced-guide-example.md"
+      "markdownUrl": "/content/category3/advanced-guide-example.md",
+      "hasContent": true
     }
   ],
   "category4": [
@@ -46,10 +50,11 @@
       "type": "article",
       "title": "Specialized Resource: Template Customization Reference",
       "slug": "specialized-resource",
-      "author": "[Your Name]",
+      "author": "Library Author",
       "summary": "A specialized reference guide for advanced template customization. This Category 4 example shows how to create comprehensive reference materials.",
       "pdfUrl": "/pdfs/category4/specialized-resource.pdf",
-      "markdownUrl": "/content/category4/specialized-resource.md"
+      "markdownUrl": "/content/category4/specialized-resource.md",
+      "hasContent": true
     }
   ]
 }

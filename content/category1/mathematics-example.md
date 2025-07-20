@@ -1,31 +1,19 @@
 ---
-# =============================================================================
-# COMMON METADATA (used by both mdtexpdf and mdaudiobook)
-# =============================================================================
+# Common metadata
 title: "Mathematical Concepts Example"
-author: "[Your Name]"
-date: "January 15, 2024"
+author: "Library Author"
+date: "2024-01-15"
 description: "An example document demonstrating proper mathematical formatting for LaTeX/PDF generation using the AI prompt conventions."
 
-# =============================================================================
-# PDF-SPECIFIC METADATA (mdtexpdf only)
-# =============================================================================
-# Document structure
+# PDF settings
 format: "article"
-section: "category1"
-
-# Section numbering
 no_numbers: false
-
-# Headers and footers
 header_footer_policy: "all"
-footer: "© 2024 [Your Organization] | [Your Website]. All rights reserved."
+footer: " 2024 Your Digital Library. All rights reserved."
 pageof: true
-date_footer: "DD/MM/YY"
+date_footer: true
 
-# =============================================================================
-# LIBRARY METADATA (for web interface)
-# =============================================================================
+# Library metadata
 type: "article"
 category: "category1"
 slug: "mathematics-example"

@@ -1,32 +1,20 @@
 ---
-# =============================================================================
-# COMMON METADATA (used by both mdtexpdf and mdaudiobook)
-# =============================================================================
+# Common metadata
 title: "Introduction to Category 1"
-author: "[Your Name]"
-date: "January 15, 2024"
+author: "Library Author"
+date: "2024-01-15"
 description: "A comprehensive introduction to the concepts and ideas in Category 1. This example demonstrates how to structure content for your digital library."
 
-# =============================================================================
-# PDF-SPECIFIC METADATA (mdtexpdf only)
-# =============================================================================
-# Document structure
-format: "book"
-section: "category1"
-
-# Section numbering
+# PDF settings
+format: "article"
 no_numbers: false
-
-# Headers and footers
 header_footer_policy: "all"
-footer: "\xA9 2024 [Your Organization] | [Your Website]. All rights reserved."
+footer: "© 2024 Your Digital Library. All rights reserved."
 pageof: true
-date_footer: "DD/MM/YY"
+date_footer: true
 
-# =============================================================================
-# LIBRARY METADATA (for web interface)
-# =============================================================================
-type: "book"
+# Library metadata
+type: "article"
 category: "category1"
 slug: "introduction-to-category1"
 summary: "A comprehensive introduction to the concepts and ideas in Category 1. This example demonstrates how to structure content for your digital library."

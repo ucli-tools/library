@@ -226,6 +226,12 @@ curl -sSL https://ucli.tools/install | bash
 ucli build mdtexpdf mdaudiobook mdepub
 ```
 
+## 📚 Documentation
+
+- [mdtexpdf Syntax Guide](docs/MDTEXPDF_SYNTAX.md) - Markdown and LaTeX syntax for PDF generation
+- [Architecture Overview](docs/ARCHITECTURE.md) - Technical design and system architecture
+- [Content Workflow](docs/CONTENT_WORKFLOW.md) - How to create and organize content
+
 ## 📄 License
 
 **This project is licensed under the Apache 2.0 License** - see the [LICENSE](LICENSE) file for details.

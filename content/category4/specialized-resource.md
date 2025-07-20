@@ -1,6 +1,6 @@
 ---
 title: "Specialized Resource: Template Customization Reference"
-author: "[Your Name]"
+author: "Library Author"
 date: "2024-01-30"
 description: "A specialized reference guide for advanced template customization. This Category 4 example shows how to create comprehensive reference materials."
 category: "category4"

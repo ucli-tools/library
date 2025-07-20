@@ -1,36 +1,25 @@
 ---
-# =============================================================================
-# COMMON METADATA (used by both mdtexpdf and mdaudiobook)
-# =============================================================================
 title: "Working with Articles in Category 2"
-author: "[Your Name]"
-date: "January 20, 2024"
+author: "Library Author"
+date: "2024-01-20"
 description: "Learn how to create and organize article-style content in your digital library. This example shows best practices for shorter-form content."
 
-# =============================================================================
-# PDF-SPECIFIC METADATA (mdtexpdf only)
-# =============================================================================
-# Document structure
 format: "article"
 section: "category2"
 
-# Section numbering
 no_numbers: false
 
-# Headers and footers
 header_footer_policy: "all"
-footer: "\xA9 2024 [Your Organization] | [Your Website]. All rights reserved."
+footer: " 2024 Your Digital Library. All rights reserved."
 pageof: true
-date_footer: "DD/MM/YY"
+date_footer: true
 
-# =============================================================================
-# LIBRARY METADATA (for web interface)
-# =============================================================================
 type: "article"
 category: "category2"
 slug: "working-with-articles"
 summary: "Learn how to create and organize article-style content in your digital library. This example shows best practices for shorter-form content."
 tags: ["articles", "category2", "writing", "example"]
+
 ---
 
 # Working with Articles in Category 2

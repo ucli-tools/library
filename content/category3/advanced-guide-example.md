@@ -1,31 +1,19 @@
 ---
-# =============================================================================
-# COMMON METADATA (used by both mdtexpdf and mdaudiobook)
-# =============================================================================
 title: "Advanced Guide: Building Your Content Strategy"
-author: "[Your Name]"
-date: "January 25, 2024"
+author: "Library Author"
+date: "2024-01-25"
 description: "An advanced guide demonstrating how to create comprehensive content strategies for your digital library. Perfect for Category 3 content."
 
-# =============================================================================
-# PDF-SPECIFIC METADATA (mdtexpdf only)
-# =============================================================================
-# Document structure
 format: "guide"
 section: "category3"
 
-# Section numbering
 no_numbers: false
 
-# Headers and footers
 header_footer_policy: "all"
-footer: "\xA9 2024 [Your Organization] | [Your Website]. All rights reserved."
+footer: " 2024 Your Digital Library. All rights reserved."
 pageof: true
-date_footer: "DD/MM/YY"
+date_footer: true
 
-# =============================================================================
-# LIBRARY METADATA (for web interface)
-# =============================================================================
 type: "guide"
 category: "category3"
 slug: "advanced-guide-example"

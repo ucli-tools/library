@@ -46,18 +46,9 @@ build-content:
 	./scripts/build-content.sh
 
 build-pdf:
-	@echo "📄 Generating PDFs with mdtexpdf..."
+	@echo "📄 TOC-driven PDF generation with mdtexpdf..."
 	@if command -v mdtexpdf >/dev/null 2>&1; then \
-		mkdir -p public/pdfs/category1 public/pdfs/category2 public/pdfs/category3 public/pdfs/category4 public/pdfs/books public/pdfs/articles public/pdfs/guides; \
-		find content/ -name "*.md" -type f ! -name "README.md" | while read file; do \
-			reldir=$$(dirname "$$file" | sed 's|content/||'); \
-			basename=$$(basename "$$file" .md); \
-			echo "Converting $$file with metadata"; \
-			(cd "$$(dirname "$$file")" && mdtexpdf convert "$$(basename "$$file")" --read-metadata --toc); \
-			if [ -f "$$(dirname "$$file")/$$basename.pdf" ]; then \
-				mv "$$(dirname "$$file")/$$basename.pdf" "public/pdfs/$$reldir/$$basename.pdf"; \
-			fi; \
-		done; \
+		node scripts/build-config.js; \
 	else \
 		echo "❌ mdtexpdf not found. Install with: ucli build mdtexpdf"; \
 		exit 1; \

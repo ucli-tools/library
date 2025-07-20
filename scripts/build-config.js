@@ -9,6 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 import { marked } from 'marked';
+import { execSync } from 'child_process';
 
 // Configure marked for proper HTML generation
 marked.setOptions({
@@ -146,16 +147,38 @@ class ConfigBuilder {
     }
 
     const structureContent = fs.readFileSync(structurePath, 'utf8');
-    const libraryContent = this.parseLibraryStructure(structureContent);
+    const libraryContent = await this.parseLibraryStructure(structureContent);
     
     // Write generated library content
     const outputPath = path.join(this.srcDir, 'data', 'library_content.json');
     fs.writeFileSync(outputPath, JSON.stringify(libraryContent, null, 2));
     
-    console.log(`📝 Generated library_content.json with ${Object.keys(libraryContent).length} categories`);
+    // Generate summary report
+    let totalFiles = 0;
+    let totalPDFs = 0;
+    let totalErrors = 0;
+    
+    for (const [categorySlug, items] of Object.entries(libraryContent)) {
+      const validItems = items.filter(item => item.hasContent);
+      const errorItems = items.filter(item => item.error);
+      const pdfItems = items.filter(item => item.pdfUrl);
+      
+      totalFiles += validItems.length;
+      totalPDFs += pdfItems.length;
+      totalErrors += errorItems.length;
+    }
+    
+    console.log(`\n📊 Content Processing Summary:`);
+    console.log(`   Categories: ${Object.keys(libraryContent).length}`);
+    console.log(`   Total files processed: ${totalFiles}`);
+    console.log(`   PDFs generated: ${totalPDFs}`);
+    if (totalErrors > 0) {
+      console.log(`   ⚠️  Errors: ${totalErrors}`);
+    }
+    console.log(`   📝 Generated library_content.json\n`);
   }
 
-  parseLibraryStructure(content) {
+  async parseLibraryStructure(content) {
     const lines = content.split('\n');
     const libraryContent = {};
     let currentCategory = null;
@@ -209,24 +232,110 @@ class ConfigBuilder {
           const markdownContent = fs.readFileSync(markdownPath, 'utf8');
           const metadata = this.extractFrontmatter(markdownContent);
           
+          // Generate PDF if needed
+          const pdfGenerated = await this.generatePDFIfNeeded(markdownPath, pdfPath, filePath);
+          
           const item = {
             type: metadata.type || 'article',
             title: metadata.title || title,
             slug: slug,
             author: metadata.author || this.config.branding?.library?.author || '[Your Name]',
             summary: metadata.description || metadata.summary || `${title} - part of ${currentCategory}`,
-            pdfUrl: fs.existsSync(pdfPath) ? `/pdfs/${filePath.replace('.md', '.pdf')}` : null,
-            markdownUrl: `/content/${filePath}`
+            pdfUrl: pdfGenerated ? `/pdfs/${filePath.replace('.md', '.pdf')}` : null,
+            markdownUrl: `/content/${filePath}`,
+            hasContent: true
           };
           
           libraryContent[currentCategorySlug].push(item);
         } else {
-          console.log(`⚠️  Markdown file not found: ${markdownPath}`);
+          // Professional error message for missing files
+          console.error(`❌ TOC Error: Referenced file '${filePath}' does not exist`);
+          console.error(`   Check: content/${filePath}`);
+          console.error(`   Fix: Either create the file or remove it from library-structure.md\n`);
+          
+          // Still add to navigation but mark as missing
+          const item = {
+            type: 'missing',
+            title: title,
+            slug: slug,
+            author: this.config.branding?.library?.author || '[Your Name]',
+            summary: `Missing file: ${filePath}`,
+            pdfUrl: null,
+            markdownUrl: null,
+            hasContent: false,
+            error: 'File not found'
+          };
+          
+          libraryContent[currentCategorySlug].push(item);
         }
       }
     }
 
     return libraryContent;
+  }
+
+  async generatePDFIfNeeded(markdownPath, pdfPath, filePath) {
+    try {
+      // Ensure PDF directory exists
+      const pdfDir = path.dirname(pdfPath);
+      if (!fs.existsSync(pdfDir)) {
+        fs.mkdirSync(pdfDir, { recursive: true });
+      }
+
+      // Check if PDF needs regeneration (markdown is newer than PDF)
+      let needsRegeneration = true;
+      if (fs.existsSync(pdfPath)) {
+        const markdownStat = fs.statSync(markdownPath);
+        const pdfStat = fs.statSync(pdfPath);
+        needsRegeneration = markdownStat.mtime > pdfStat.mtime;
+      }
+
+      if (!needsRegeneration) {
+        console.log(`📄 PDF up-to-date: ${filePath.replace('.md', '.pdf')}`);
+        return true;
+      }
+
+      console.log(`🔄 Generating PDF: ${filePath} → ${filePath.replace('.md', '.pdf')}`);
+      
+      // Use mdtexpdf to generate PDF
+      // Change to the directory containing the markdown file for proper relative path handling
+      const markdownDir = path.dirname(markdownPath);
+      const markdownFile = path.basename(markdownPath);
+      
+      const command = `cd "${markdownDir}" && mdtexpdf convert "${markdownFile}" --read-metadata --toc`;
+      
+      try {
+        execSync(command, { 
+          stdio: 'pipe',
+          timeout: 30000 // 30 second timeout
+        });
+        
+        // Move generated PDF to public/pdfs directory
+        const generatedPdfPath = path.join(markdownDir, markdownFile.replace('.md', '.pdf'));
+        if (fs.existsSync(generatedPdfPath)) {
+          fs.renameSync(generatedPdfPath, pdfPath);
+          console.log(`✅ PDF generated: ${filePath.replace('.md', '.pdf')}`);
+          return true;
+        } else {
+          console.error(`❌ PDF Generation Failed: mdtexpdf did not create expected output for ${filePath}`);
+          console.error(`   Expected: ${generatedPdfPath}`);
+          console.error(`   Fix: Check markdown file format and mdtexpdf compatibility\n`);
+          return false;
+        }
+        
+      } catch (execError) {
+        console.error(`❌ PDF Generation Failed: ${filePath}`);
+        console.error(`   Error: ${execError.message}`);
+        console.error(`   Fix: Check markdown file format, frontmatter, and mdtexpdf installation\n`);
+        return false;
+      }
+      
+    } catch (error) {
+      console.error(`❌ PDF Generation Error: ${filePath}`);
+      console.error(`   Error: ${error.message}`);
+      console.error(`   Fix: Check file permissions and mdtexpdf installation\n`);
+      return false;
+    }
   }
 
   extractFrontmatter(content) {
