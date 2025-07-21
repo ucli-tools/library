@@ -75,9 +75,9 @@ build-epub:
 build-all: build-content build
 	@echo "✅ Complete build finished!"
 
-# Template configuration system
+# Phase 2: Interactive Setup System with Handlebars-style configuration
 setup-template:
-	@echo "🎯 Interactive library setup..."
+	@echo "🎯 Interactive library setup with Handlebars-style configuration..."
 	@node scripts/setup-template.js
 
 setup-template-manual:
@@ -85,8 +85,12 @@ setup-template-manual:
 	@node scripts/setup-template.js manual
 
 build-config:
-	@echo "🔧 Building configuration..."
-	@node scripts/build-config.js
+	@echo "🔧 Processing templates with configuration..."
+	@node scripts/template-processor.js
+
+validate-config:
+	@echo "🔍 Validating configuration files..."
+	@node -e "import('./scripts/config-schema.js').then(({validateConfig}) => { const yaml = require('js-yaml'); const fs = require('fs'); try { const branding = yaml.load(fs.readFileSync('library-config/branding.yaml', 'utf8')); const deployment = yaml.load(fs.readFileSync('library-config/deployment.yaml', 'utf8')); validateConfig({branding, deployment}); console.log('✅ Configuration is valid!'); } catch(e) { console.error('❌ Configuration validation failed:', e.message); process.exit(1); } })"
 
 build-config-if-needed:
 	@if [ -f "library-config/branding.yaml" ]; then \

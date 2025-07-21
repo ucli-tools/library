@@ -1,0 +1,89 @@
+---
+// LibraryHeader.astro - Example of Handlebars-style template processing
+// This file demonstrates Phase 2: Interactive Setup System
+---
+
+<header class="library-header">
+  {{#if branding.logo.enabled}}
+  <div class="logo-container">
+    <img 
+      src="{{ branding.logo.path }}" 
+      alt="{{ branding.logo.alt_text }}"
+      width="{{ branding.logo.width }}"
+      height="{{ branding.logo.height }}"
+      class="library-logo"
+    />
+  </div>
+  {{/if}}
+  
+  <div class="library-info">
+    <h1 class="library-name">{{ branding.library.name }}</h1>
+    {{#if branding.library.tagline}}
+    <p class="library-tagline">{{ branding.library.tagline }}</p>
+    {{/if}}
+  </div>
+  
+  <nav class="main-navigation">
+    {{#each structure.categories}}
+    <a href="/{{ slug }}" class="nav-link">{{ name }}</a>
+    {{/each}}
+  </nav>
+</header>
+
+<style>
+  .library-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-secondary);
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .library-logo {
+    border-radius: 8px;
+  }
+  
+  .library-info {
+    flex: 1;
+    margin-left: 1rem;
+  }
+  
+  .library-name {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .library-tagline {
+    color: var(--color-secondary);
+    margin: 0.25rem 0 0 0;
+    font-size: 0.9rem;
+  }
+  
+  .main-navigation {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+</style>
