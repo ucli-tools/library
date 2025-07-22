@@ -77,6 +77,9 @@ class ConfigBuilder {
       // Process library structure (TOC)
       await this.processLibraryStructure();
       
+      // Process assets (logo, favicon, etc.)
+      await this.processAssets();
+      
       // Generate CSS variables
       await this.generateCSS();
       
@@ -595,6 +598,57 @@ const htmlContent = \`${escapedHtml}\`;
         month: 'long', 
         day: 'numeric' 
       }));
+  }
+
+  async processAssets() {
+    console.log('🖼️  Processing assets...');
+    
+    const assetsDir = path.join(this.configDir, 'assets');
+    const publicImagesDir = path.join(process.cwd(), 'public', 'images');
+    
+    // Ensure public/images directory exists
+    if (!fs.existsSync(publicImagesDir)) {
+      fs.mkdirSync(publicImagesDir, { recursive: true });
+    }
+    
+    // Process logo
+    const userLogo = path.join(assetsDir, 'logo.png');
+    const publicLogo = path.join(publicImagesDir, 'logo.png');
+    
+    if (fs.existsSync(userLogo)) {
+      // Copy user's logo to public directory
+      fs.copyFileSync(userLogo, publicLogo);
+      console.log('✅ Copied user logo to public/images/logo.png');
+      
+      // Update template references from template-logo.png to logo.png
+      await this.updateLogoReferences();
+    } else {
+      console.log('ℹ️  No user logo found, keeping template logo');
+    }
+  }
+  
+  async updateLogoReferences() {
+    console.log('🔧 Updating logo references in templates...');
+    
+    const filesToUpdate = [
+      path.join(this.srcDir, 'components', 'Navbar.astro'),
+      path.join(this.srcDir, 'layouts', 'Layout.astro'),
+      path.join(this.srcDir, 'pages', 'index.astro')
+    ];
+    
+    for (const filePath of filesToUpdate) {
+      if (fs.existsSync(filePath)) {
+        let content = fs.readFileSync(filePath, 'utf8');
+        
+        // Replace template-logo.png with logo.png
+        const updatedContent = content.replace(/\/images\/template-logo\.png/g, '/images/logo.png');
+        
+        if (content !== updatedContent) {
+          fs.writeFileSync(filePath, updatedContent);
+          console.log(`🔧 Updated logo reference in ${path.basename(filePath)}`);
+        }
+      }
+    }
   }
 
   async updateComponents() {
