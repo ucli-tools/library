@@ -3,12 +3,15 @@
 /**
  * Interactive Template Setup
  * Guides users through customizing their digital library
+ * Part of Phase 2: Interactive Setup System with Handlebars-style configuration
  */
 
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import yaml from 'js-yaml';
+import TemplateProcessor from './template-processor.js';
+import { validateConfig, applyTheme, themePresets, defaultConfig } from './config-schema.js';
 
 class TemplateSetup {
   constructor() {
@@ -22,20 +25,40 @@ class TemplateSetup {
   async setup() {
     console.log('\n🚀 Welcome to the Universalis Library Template Setup!\n');
     console.log('This interactive setup will help you customize your digital library.');
+    console.log('Using Handlebars-style configuration for maximum flexibility.');
     console.log('You can always edit the configuration files later in the library-config/ directory.\n');
 
     try {
       const config = await this.gatherConfiguration();
+      
+      // Validate configuration
+      console.log('\n🔍 Validating configuration...');
+      validateConfig(config);
+      console.log('✅ Configuration is valid!');
+      
       await this.writeConfiguration(config);
       await this.copyAssets();
       
+      // Process templates with new configuration
+      console.log('\n🎨 Processing templates with your configuration...');
+      const processor = new TemplateProcessor();
+      await processor.processAllTemplates();
+      
       console.log('\n✅ Template setup complete!');
+      console.log('\nYour library has been customized with:');
+      console.log(`  📚 Library: ${config.branding.library.name}`);
+      console.log(`  🎨 Theme: ${config.branding.theme}`);
+      console.log(`  🌐 Domain: ${config.deployment.domain}`);
       console.log('\nNext steps:');
       console.log('1. Add your logo to library-config/assets/logo.png');
       console.log('2. Edit your content in the content/ directory');
       console.log('3. Customize static pages in library-config/pages/');
-      console.log('4. Run "make build-config" to apply your changes');
-      console.log('5. Run "make dev" to preview your library');
+      console.log('4. Run "make dev" to preview your library');
+      console.log('5. Run "make deploy" when ready to publish');
+      console.log('\nConfiguration files created in library-config/:');
+      console.log('  - branding.yaml (colors, fonts, logo)');
+      console.log('  - deployment.yaml (domain, SEO, analytics)');
+      console.log('  - library-structure.md (content organization)');
       console.log('\nHappy publishing! 📚');
       
     } catch (error) {
@@ -47,7 +70,7 @@ class TemplateSetup {
   }
 
   async gatherConfiguration() {
-    const config = {
+    let config = {
       branding: {
         library: {},
         colors: {},
@@ -75,7 +98,12 @@ class TemplateSetup {
     config.branding.library.description = await this.ask('Library description', 'A curated collection of thoughts, research, and insights');
     config.branding.library.author = await this.ask('Your name', '[Your Name]');
     config.branding.library.organization = await this.ask('Organization (optional)', config.branding.library.author);
-    config.branding.library.website = await this.ask('Your website', 'https://yourwebsite.com');
+    let website = await this.ask('Your website', 'https://yourwebsite.com');
+    // Auto-prepend https:// if no protocol specified
+    if (website && !website.startsWith('http://') && !website.startsWith('https://')) {
+      website = 'https://' + website;
+    }
+    config.branding.library.website = website;
 
     console.log('\n🎨 Visual Design');
     console.log('='.repeat(50));
@@ -83,18 +111,31 @@ class TemplateSetup {
     const themes = ['blue-professional', 'green-academic', 'purple-creative', 'orange-warm', 'gray-minimal'];
     console.log('Available themes:');
     themes.forEach((theme, index) => {
-      console.log(`  ${index + 1}. ${theme}`);
+      const preset = themePresets[theme];
+      console.log(`  ${index + 1}. ${theme} (Primary: ${preset.colors.primary})`);
     });
     
     const themeChoice = await this.ask('Choose a theme (1-5)', '1');
     const themeIndex = parseInt(themeChoice) - 1;
-    config.branding.theme = themes[themeIndex] || 'blue-professional';
+    const selectedTheme = themes[themeIndex] || 'blue-professional';
+    
+    // Apply theme preset
+    config = applyTheme(config, selectedTheme);
+    console.log(`✅ Applied ${selectedTheme} theme`);
 
     const customColors = await this.askYesNo('Do you want to customize colors?', false);
     if (customColors) {
-      config.branding.colors.primary = await this.ask('Primary color (hex)', '#2563eb');
-      config.branding.colors.secondary = await this.ask('Secondary color (hex)', '#64748b');
-      config.branding.colors.accent = await this.ask('Accent color (hex)', '#f59e0b');
+      console.log(`\nCurrent theme colors:`);
+      console.log(`  Primary: ${config.branding.colors.primary}`);
+      console.log(`  Secondary: ${config.branding.colors.secondary}`);
+      console.log(`  Accent: ${config.branding.colors.accent}`);
+      console.log('');
+      
+      config.branding.colors.primary = await this.ask('Primary color (hex)', config.branding.colors.primary);
+      config.branding.colors.secondary = await this.ask('Secondary color (hex)', config.branding.colors.secondary);
+      config.branding.colors.accent = await this.ask('Accent color (hex)', config.branding.colors.accent);
+      config.branding.colors.background = await this.ask('Background color (hex)', config.branding.colors.background);
+      config.branding.colors.text = await this.ask('Text color (hex)', config.branding.colors.text);
     }
 
     console.log('\n🔤 Typography');
