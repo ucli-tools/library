@@ -4,29 +4,37 @@
 ---
 
 <header class="library-header">
-  {{#if branding.logo.enabled}}
-  <div class="logo-container">
-    <img 
-      src="{{ branding.logo.path }}" 
-      alt="{{ branding.logo.alt_text }}"
-      width="{{ branding.logo.width }}"
-      height="{{ branding.logo.height }}"
-      class="library-logo"
-    />
-  </div>
-  {{/if}}
+  
   
   <div class="library-info">
-    <h1 class="library-name">{{ branding.library.name }}</h1>
-    {{#if branding.library.tagline}}
-    <p class="library-tagline">{{ branding.library.tagline }}</p>
-    {{/if}}
+    <h1 class="library-name">Libraro</h1>
+    
+    <p class="library-tagline">Learn it first here</p>
+    
   </div>
   
   <nav class="main-navigation">
-    {{#each structure.categories}}
-    <a href="/{{ slug }}" class="nav-link">{{ name }}</a>
-    {{/each}}
+    
+    <a href="/category1" class="nav-link">Category 1</a>
+    
+    <a href="/category2" class="nav-link">Category 2</a>
+    
+    <a href="/category3" class="nav-link">Category 3</a>
+    
+    <a href="/category4" class="nav-link">Category 4</a>
+    
+    <a href="/books" class="nav-link">Books</a>
+    
+    <a href="/articles" class="nav-link">Articles</a>
+    
+    <a href="/research" class="nav-link">Research</a>
+    
+    <a href="/resources" class="nav-link">Resources</a>
+    
+    <a href="/books" class="nav-link">Books</a>
+    
+    <a href="/fiction" class="nav-link">Fiction</a>
+    
   </nav>
 </header>
 

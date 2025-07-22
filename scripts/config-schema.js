@@ -14,7 +14,7 @@ export const configSchema = {
       description: { type: 'string', maxLength: 500 },
       author: { type: 'string', required: true },
       organization: { type: 'string' },
-      website: { type: 'string', pattern: /^https?:\/\/.+/ }
+      website: { type: 'string', pattern: /^(https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }
     },
     colors: {
       primary: { type: 'string', pattern: /^#[0-9A-Fa-f]{6}$/ },

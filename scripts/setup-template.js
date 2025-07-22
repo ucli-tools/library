@@ -70,7 +70,7 @@ class TemplateSetup {
   }
 
   async gatherConfiguration() {
-    const config = {
+    let config = {
       branding: {
         library: {},
         colors: {},
@@ -98,7 +98,12 @@ class TemplateSetup {
     config.branding.library.description = await this.ask('Library description', 'A curated collection of thoughts, research, and insights');
     config.branding.library.author = await this.ask('Your name', '[Your Name]');
     config.branding.library.organization = await this.ask('Organization (optional)', config.branding.library.author);
-    config.branding.library.website = await this.ask('Your website', 'https://yourwebsite.com');
+    let website = await this.ask('Your website', 'https://yourwebsite.com');
+    // Auto-prepend https:// if no protocol specified
+    if (website && !website.startsWith('http://') && !website.startsWith('https://')) {
+      website = 'https://' + website;
+    }
+    config.branding.library.website = website;
 
     console.log('\n🎨 Visual Design');
     console.log('='.repeat(50));
