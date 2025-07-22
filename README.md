@@ -13,16 +13,18 @@ Welcome to your new digital library! This template provides everything you need 
 
 ## 🚀 Quick Start
 
+We present a quick start guide to help you get started with your digital library. For a detailed guide, read the [Setup Guide](docs/SETUP_GUIDE.md).
+
 ### 1. Fork This Template
 ```bash
 # Fork this repository on GitHub, then clone your fork
-git clone https://github.com/yourusername/your-library-name.git
-cd your-library-name
+git clone https://github.com/ucli-tools/library.git
+cd library
 ```
 
 ### 2. Install Dependencies
 ```bash
-make install
+npm install
 ```
 
 ### 3. Install Universalis Tools
@@ -30,6 +32,8 @@ make install
 # Install the ecosystem tools for content processing
 ucli build mdtexpdf mdaudiobook mdepub
 ```
+
+For more information, read the [Setup Guide](docs/SETUP_GUIDE.md).
 
 ### 4. Customize Your Library
 ```bash
@@ -54,7 +58,7 @@ content/
 
 ### 6. Build Everything
 ```bash
-# Process your markdown into multiple formats
+# Process your markdown into PDFs displayed in the PDF reader of the Library
 make build-all
 ```
 
