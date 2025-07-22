@@ -45,7 +45,9 @@ npm install
 
 # Install the Universalis ecosystem tools (optional but recommended)
 # These enable PDF, audiobook, and ePub generation
-curl -sSL https://ucli.dev/install | bash
+wget https://raw.githubusercontent.com/ucli-tools/ucli/main/ucli.sh
+bash ./ucli.sh install
+rm ./ucli.sh
 ucli build mdtexpdf mdaudiobook mdepub
 ```
 
@@ -291,7 +293,7 @@ make reset-template
 
 ## 🎯 Template Processing: How It Works
 
-Our Phase 2 system uses **Handlebars-style syntax** for configuration-driven customization:
+Our system uses **Handlebars-style syntax** for configuration-driven customization:
 
 ### Variables
 ```astro
@@ -373,7 +375,7 @@ You've successfully set up your digital library when:
 - ✅ Navigation shows your custom categories
 - ✅ PDFs generate with proper headers/footers
 - ✅ Colors and fonts match your chosen theme
-- ✅ Logo appears in header (if configured)
+- ✅ Custom logo appears in header
 - ✅ SEO metadata is properly set
 
 ## 🚀 Next Steps
@@ -392,7 +394,7 @@ This setup embodies our vision of democratizing digital library creation through
 
 - **Answering questions** instead of writing code
 - **Editing YAML files** instead of CSS/HTML
-- **Using markdown** instead of complex markup
+- **Using markdown** instead of complex markup and LaTeX
 - **Configuring** instead of programming
 
 Your library is now a **living system** that grows with your knowledge while maintaining professional presentation and accessibility.
