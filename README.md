@@ -284,4 +284,4 @@ Start by running `make help` to see all available commands, then `make setup-tem
 
 ## 📞 Contact
 
-For questions about this template, please open an issue on GitHub or contact the maintainers.
+For questions about this template, please open an issue on [GitHub](https://github.com/ucli-tools/library/issues).
