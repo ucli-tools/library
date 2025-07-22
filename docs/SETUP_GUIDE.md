@@ -88,35 +88,30 @@ Choose from professional font families:
 4. **Lato** - Humanist, warm
 5. **Source Sans Pro** - Adobe's clean design
 
-#### 4.4 Website Settings
+#### 4.4 Logo Setup (Optional)
+The setup will prompt you to add your logo:
+- **Supported formats**: PNG, JPG, JPEG
+- **Recommended size**: 400x100px or similar aspect ratio
+- **Automatic processing**: The system handles format conversion and generates favicon, social preview images, and multiple sizes
+- **File validation**: Checks if your image file exists and is in a supported format
+- **Smart copying**: Automatically places your logo in the correct location
+
+#### 4.5 Website Settings
 - **Custom domain**: yourlibrary.com (optional)
 - **SEO description**: Meta description for search engines
 - **Keywords**: Comma-separated keywords for SEO
 
-#### 4.5 Analytics (Optional)
+#### 4.6 Analytics (Optional)
 - **Google Analytics**: Enter your GA4 tracking ID (G-XXXXXXXXXX)
 
-#### 4.6 Deployment
+#### 4.7 Deployment
 - **GitHub Pages**: Enable automatic deployment
 - **Custom domain**: Use your own domain name
 - **Subdomain**: GitHub Pages subdomain (username.github.io/subdomain)
 
-### Step 5: Add Your Logo (Optional)
+### Step 5: Create Your Content
 
-```bash
-# Add your logo to the assets directory
-cp /path/to/your/logo.png library-config/assets/logo.png
-
-# The system will automatically generate:
-# - favicon.ico
-# - apple-touch-icon.png
-# - social preview images
-# - Multiple sizes for different uses
-```
-
-### Step 6: Create Your Content
-
-#### 6.1 Organize Your Content Structure
+#### 5.1 Organize Your Content Structure
 
 Edit `library-config/library-structure.md` to define your content organization:
 
@@ -135,7 +130,7 @@ Edit `library-config/library-structure.md` to define your content organization:
   - [Quick Reference](resources/quick-reference.md)
 ```
 
-#### 6.2 Create Content Files
+#### 5.2 Create Content Files
 
 Create markdown files in the `content/` directory:
 
@@ -172,7 +167,7 @@ EOF
 - `format: "article"`: For clean PDF formatting
 - `header_footer_policy: "all"`: For professional headers/footers
 
-### Step 7: Build Your Library
+### Step 6: Build Your Library
 
 ```bash
 # Generate PDFs from your markdown content
@@ -187,9 +182,9 @@ make dev
 
 Visit `http://localhost:4321` to preview your library!
 
-### Step 8: Deploy to GitHub Pages
+### Step 7: Deploy to GitHub Pages
 
-#### 8.1 Configure GitHub Pages
+#### 7.1 Configure GitHub Pages
 
 1. **Go to your repository on GitHub**
 2. **Click "Settings" tab**
@@ -198,7 +193,7 @@ Visit `http://localhost:4321` to preview your library!
 5. **Branch**: Select `main` and `/ (root)`
 6. **Click "Save"**
 
-#### 8.2 Deploy Your Library
+#### 7.2 Deploy Your Library
 
 ```bash
 # Build for production
@@ -212,7 +207,7 @@ git push origin main
 
 Your library will be available at: `https://yourusername.github.io/your-repo-name`
 
-#### 8.3 Custom Domain (Optional)
+#### 7.3 Custom Domain (Optional)
 
 If you configured a custom domain during setup:
 

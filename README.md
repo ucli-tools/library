@@ -47,6 +47,8 @@ make setup-template-manual
 make build-config
 ```
 
+> 💡 **New!** The interactive setup now includes logo upload support for PNG, JPG, and JPEG files. The system automatically handles format conversion and generates favicon, social preview images, and multiple sizes.
+
 ### 5. Add Your Content
 Create markdown files in the `content/` directory:
 ```

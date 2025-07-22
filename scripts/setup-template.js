@@ -159,6 +159,14 @@ class TemplateSetup {
     config.branding.typography.primary_font = fonts[fontIndex] || fonts[0];
     config.branding.typography.heading_font = config.branding.typography.primary_font;
 
+    console.log('\n🖼️  Logo Setup (Optional)');
+    console.log('='.repeat(50));
+    
+    const addLogo = await this.askYesNo('Do you want to add a logo?', false);
+    if (addLogo) {
+      await this.handleLogoSetup();
+    }
+
     console.log('\n🌐 Website Settings');
     console.log('='.repeat(50));
     
@@ -201,6 +209,83 @@ class TemplateSetup {
     const defaultText = defaultValue ? 'Y/n' : 'y/N';
     const answer = await this.ask(`${question} (${defaultText})`, defaultValue ? 'y' : 'n');
     return answer.toLowerCase().startsWith('y');
+  }
+
+  async handleLogoSetup() {
+    console.log('\nSupported formats: PNG, JPG, JPEG');
+    console.log('Recommended size: 400x100px or similar aspect ratio\n');
+    
+    const logoPath = await this.ask('Path to your logo image', '');
+    
+    if (!logoPath) {
+      console.log('⏭️  Skipping logo setup');
+      return;
+    }
+    
+    // Check if file exists
+    if (!fs.existsSync(logoPath)) {
+      console.log(`❌ Error: File not found at ${logoPath}`);
+      const retry = await this.askYesNo('Would you like to try a different path?', true);
+      if (retry) {
+        return await this.handleLogoSetup();
+      }
+      return;
+    }
+    
+    // Check file extension
+    const ext = path.extname(logoPath).toLowerCase();
+    const supportedFormats = ['.png', '.jpg', '.jpeg'];
+    
+    if (!supportedFormats.includes(ext)) {
+      console.log(`❌ Error: Unsupported format ${ext}`);
+      console.log('Supported formats: PNG, JPG, JPEG');
+      const retry = await this.askYesNo('Would you like to try a different file?', true);
+      if (retry) {
+        return await this.handleLogoSetup();
+      }
+      return;
+    }
+    
+    try {
+      // Ensure assets directory exists
+      const assetsDir = path.join(this.configDir, 'assets');
+      if (!fs.existsSync(assetsDir)) {
+        fs.mkdirSync(assetsDir, { recursive: true });
+      }
+      
+      const targetPath = path.join(assetsDir, 'logo.png');
+      
+      // If it's already a PNG, just copy it
+      if (ext === '.png') {
+        fs.copyFileSync(logoPath, targetPath);
+        console.log('✅ Logo copied successfully!');
+      } else {
+        // For JPG/JPEG, we'll copy it but warn about format
+        const jpegTargetPath = path.join(assetsDir, `logo${ext}`);
+        fs.copyFileSync(logoPath, jpegTargetPath);
+        
+        // Also copy to logo.png for compatibility
+        fs.copyFileSync(logoPath, targetPath);
+        
+        console.log(`✅ Logo copied successfully!`);
+        console.log(`📝 Note: Your ${ext.toUpperCase()} file has been copied as logo.png`);
+        console.log('   For best results, consider using a PNG file in the future.');
+      }
+      
+      console.log('\n🎯 Logo setup complete!');
+      console.log('   The system will automatically generate:');
+      console.log('   - favicon.ico');
+      console.log('   - apple-touch-icon.png');
+      console.log('   - social preview images');
+      console.log('   - Multiple sizes for different uses');
+      
+    } catch (error) {
+      console.log(`❌ Error copying logo: ${error.message}`);
+      const retry = await this.askYesNo('Would you like to try again?', true);
+      if (retry) {
+        return await this.handleLogoSetup();
+      }
+    }
   }
 
   async writeConfiguration(config) {
@@ -252,19 +337,19 @@ ${deploymentYaml}`;
       fs.mkdirSync(assetsDir, { recursive: true });
     }
 
-    // Create placeholder files
-    const placeholderLogo = path.join(assetsDir, 'logo.png');
-    if (!fs.existsSync(placeholderLogo)) {
+    // Check if logo was already set up during interactive setup
+    const logoPath = path.join(assetsDir, 'logo.png');
+    if (!fs.existsSync(logoPath)) {
       // Copy existing template logo if available
       const templateLogo = path.join(process.cwd(), 'public', 'images', 'template-logo.png');
       if (fs.existsSync(templateLogo)) {
-        fs.copyFileSync(templateLogo, placeholderLogo);
+        fs.copyFileSync(templateLogo, logoPath);
         console.log('✅ Copied template logo to assets/logo.png');
       } else {
-        // Create a simple text file as placeholder
-        fs.writeFileSync(placeholderLogo + '.placeholder', 'Add your logo.png file here');
-        console.log('✅ Created logo placeholder');
+        console.log('ℹ️  No logo set up - you can add one later to library-config/assets/logo.png');
       }
+    } else {
+      console.log('✅ Logo already configured');
     }
 
     const readmePath = path.join(assetsDir, 'README.md');
