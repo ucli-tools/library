@@ -18,7 +18,7 @@ We present a quick start guide to help you get started with your digital library
 ### 1. Fork This Template
 ```bash
 # Fork this repository on GitHub, then clone your fork
-git clone https://github.com/ucli-tools/library.git
+git clone https://github.com/yourusername/library.git
 cd library
 ```
 
