@@ -1,6 +1,6 @@
-# About This Library
+# About {{branding.library.name}}
 
-Welcome to my digital library! This is a curated collection of my thoughts, research, and insights on topics that matter to me.
+Welcome to {{branding.library.name}}! {{branding.library.description}}
 
 ## My Mission
 
@@ -13,11 +13,13 @@ I believe that knowledge grows when shared. This library represents my commitmen
 - **Thoughtful analysis** of complex subjects
 - **Resources and references** to help you dive deeper
 
-## About Me
+## About {{branding.library.author}}
 
-[Write a brief bio about yourself here. Include your background, expertise, and what drives your passion for knowledge sharing.]
+{{#if branding.library.bio}}{{branding.library.bio}}{{else}}I'm a {{branding.library.title}} passionate about sharing knowledge and insights through this digital library.{{/if}}
 
-I'm passionate about [your interests/expertise areas]. When I'm not researching and writing, you can find me [personal interests/hobbies].
+{{#if branding.library.title}}**Role:** {{branding.library.title}}{{/if}}
+{{#if branding.library.organization}}**Organization:** {{branding.library.organization}}{{/if}}
+{{#if branding.library.location}}**Location:** {{branding.library.location}}{{/if}}
 
 ## How This Library Works
 
@@ -30,7 +32,19 @@ This digital library is built using the Universalis ecosystem, which allows me t
 
 ## Get in Touch
 
-I'd love to hear from you! Whether you have questions, suggestions, or just want to connect, feel free to [reach out](/contact/).
+I'd love to hear from you! Whether you have questions, suggestions, or just want to connect:
+
+{{#if branding.library.email}}- **Email:** [{{branding.library.email}}](mailto:{{branding.library.email}}){{/if}}
+{{#if branding.library.website}}- **Website:** [{{branding.library.website}}]({{branding.library.website}}){{/if}}
+- **Contact Form:** [Reach out](/contact/)
+
+### Connect on Social Media
+
+{{#if branding.social.x}}- **X (Twitter):** [@{{branding.social.x}}](https://x.com/{{branding.social.x}}){{/if}}
+{{#if branding.social.github}}- **GitHub:** [{{branding.social.github}}](https://github.com/{{branding.social.github}}){{/if}}
+{{#if branding.social.linkedin}}- **LinkedIn:** [Connect with me]({{branding.social.linkedin}}){{/if}}
+{{#if branding.social.mastodon}}- **Mastodon:** [{{branding.social.mastodon}}]({{branding.social.mastodon}}){{/if}}
+{{#if branding.social.youtube}}- **YouTube:** [My Channel]({{branding.social.youtube}}){{/if}}
 
 ## Support This Work
 
@@ -38,7 +52,7 @@ If you find value in this library, consider:
 
 - Sharing content that resonates with you
 - Providing feedback and suggestions
-- [Supporting my work](https://yourwebsite.com/support) (if applicable)
+{{#if branding.library.website}}- [Supporting my work]({{branding.library.website}}/support) (if applicable){{/if}}
 
 ---
 

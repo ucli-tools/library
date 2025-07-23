@@ -18,16 +18,34 @@ const currentYear = new Date().getFullYear();
       <div class="column">
         <h5>References</h5>
         <ul>
-          <li><a href="https://yourwebsite.com" target="_blank">Your Website</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="/terms-conditions/">Terms and Conditions</a></li>
-          <li><a href="/social/">Social Links</a></li>
+          {{#if branding.library.website}}<li><a href="{{branding.library.website}}" target="_blank">{{branding.library.author}}'s Website</a></li>{{/if}}
+          {{#if branding.privacy.privacy_policy}}<li><a href="/privacy-policy/">Privacy Policy</a></li>{{/if}}
+          {{#if branding.privacy.terms_of_service}}<li><a href="/terms-conditions/">Terms and Conditions</a></li>{{/if}}
+          {{#if branding.footer.show_social_links}}<li><a href="/social/">Social Links</a></li>{{/if}}
         </ul>
       </div>
+      {{#if branding.footer.show_social_links}}
+      <div class="column">
+        <h5>Connect</h5>
+        <ul>
+          {{#if branding.social.x}}<li><a href="https://x.com/{{branding.social.x}}" target="_blank">X (Twitter)</a></li>{{/if}}
+          {{#if branding.social.github}}<li><a href="https://github.com/{{branding.social.github}}" target="_blank">GitHub</a></li>{{/if}}
+          {{#if branding.social.linkedin}}<li><a href="{{branding.social.linkedin}}" target="_blank">LinkedIn</a></li>{{/if}}
+          {{#if branding.social.mastodon}}<li><a href="{{branding.social.mastodon}}" target="_blank">Mastodon</a></li>{{/if}}
+          {{#if branding.social.youtube}}<li><a href="{{branding.social.youtube}}" target="_blank">YouTube</a></li>{{/if}}
+          {{#if branding.library.email}}<li><a href="mailto:{{branding.library.email}}">Email</a></li>{{/if}}
+        </ul>
+      </div>
+      {{/if}}
     </div>
     <div class="copyright">
-    <p>&copy; {currentYear} [Your Organization]. All rights reserved.</p>
-  </div>
+      {{#if branding.footer.show_copyright}}
+      <p>&copy; {currentYear} {{branding.library.author}}{{#if branding.library.organization}} / {{branding.library.organization}}{{/if}}. 
+      {{#if branding.content.default_license}}Licensed under {{branding.content.default_license}}.{{else}}All rights reserved.{{/if}}</p>
+      {{/if}}
+      {{#if branding.footer.custom_text}}<p>{{branding.footer.custom_text}}</p>{{/if}}
+      {{#if branding.footer.show_powered_by}}<p class="powered-by">Powered by <a href="https://github.com/ucli-tools/library" target="_blank">Universalis</a></p>{{/if}}
+    </div>
 </footer>
 
 <style>

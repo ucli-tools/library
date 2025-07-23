@@ -14,7 +14,47 @@ export const configSchema = {
       description: { type: 'string', maxLength: 500 },
       author: { type: 'string', required: true },
       organization: { type: 'string' },
-      website: { type: 'string', pattern: /^(https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }
+      website: { type: 'string', pattern: /^(https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ },
+      email: { type: 'string', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+      bio: { type: 'string', maxLength: 500 },
+      title: { type: 'string', maxLength: 100 },
+      location: { type: 'string', maxLength: 100 }
+    },
+    social: {
+      x: { type: 'string', maxLength: 50 },
+      linkedin: { type: 'string' },
+      github: { type: 'string', maxLength: 50 },
+      mastodon: { type: 'string' },
+      youtube: { type: 'string' },
+      rss: { type: 'boolean' }
+    },
+    content: {
+      default_license: { type: 'string', required: true },
+      custom_license_text: { type: 'string' },
+      custom_license_url: { type: 'string' },
+      show_license: { type: 'boolean' },
+      show_dates: { type: 'boolean' },
+      enable_comments: { type: 'boolean' }
+    },
+    footer: {
+      show_copyright: { type: 'boolean' },
+      show_powered_by: { type: 'boolean' },
+      custom_text: { type: 'string', maxLength: 200 },
+      show_social_links: { type: 'boolean' }
+    },
+    navigation: {
+      show_search: { type: 'boolean' },
+      show_breadcrumbs: { type: 'boolean' },
+      sticky_header: { type: 'boolean' },
+      show_progress: { type: 'boolean' }
+    },
+    privacy: {
+      cookie_consent: { type: 'boolean' },
+      privacy_policy: { type: 'boolean' },
+      terms_of_service: { type: 'boolean' },
+      gdpr_compliant: { type: 'boolean' },
+      data_retention_days: { type: 'string', pattern: /^\d+$/ },
+      contact_dpo: { type: 'string', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }
     },
     colors: {
       primary: { type: 'string', pattern: /^#[0-9A-Fa-f]{6}$/ },
@@ -69,7 +109,47 @@ export const defaultConfig = {
       description: 'A curated collection of thoughts, research, and insights',
       author: '[Your Name]',
       organization: '[Your Organization]',
-      website: 'https://yourdomain.com'
+      website: 'https://yourdomain.com',
+      email: '',
+      bio: 'Knowledge creator and digital library curator',
+      title: 'Author',
+      location: ''
+    },
+    social: {
+      x: '',
+      linkedin: '',
+      github: '',
+      mastodon: '',
+      youtube: '',
+      rss: true
+    },
+    content: {
+      default_license: 'CC BY 4.0',
+      custom_license_text: '',
+      custom_license_url: '',
+      show_license: true,
+      show_dates: true,
+      enable_comments: false
+    },
+    footer: {
+      show_copyright: true,
+      show_powered_by: true,
+      custom_text: '',
+      show_social_links: true
+    },
+    navigation: {
+      show_search: true,
+      show_breadcrumbs: true,
+      sticky_header: true,
+      show_progress: true
+    },
+    privacy: {
+      cookie_consent: false,
+      privacy_policy: true,
+      terms_of_service: false,
+      gdpr_compliant: false,
+      data_retention_days: '365',
+      contact_dpo: ''
     },
     colors: {
       primary: '#2563eb',

@@ -45,21 +45,47 @@ class TemplateSetup {
       await processor.processAllTemplates();
       
       console.log('\n✅ Template setup complete!');
-      console.log('\nYour library has been customized with:');
+      console.log('\n🎉 Your digital library has been fully customized with:');
       console.log(`  📚 Library: ${config.branding.library.name}`);
+      console.log(`  👤 Author: ${config.branding.library.author} (${config.branding.library.title})`);
+      if (config.branding.library.organization && config.branding.library.organization !== config.branding.library.author) {
+        console.log(`  🏢 Organization: ${config.branding.library.organization}`);
+      }
       console.log(`  🎨 Theme: ${config.branding.theme}`);
-      console.log(`  🌐 Domain: ${config.deployment.domain}`);
-      console.log('\nNext steps:');
-      console.log('1. Add your logo to library-config/assets/logo.png');
-      console.log('2. Edit your content in the content/ directory');
-      console.log('3. Customize static pages in library-config/pages/');
-      console.log('4. Run "make dev" to preview your library');
-      console.log('5. Run "make deploy" when ready to publish');
-      console.log('\nConfiguration files created in library-config/:');
-      console.log('  - branding.yaml (colors, fonts, logo)');
-      console.log('  - deployment.yaml (domain, SEO, analytics)');
+      console.log(`  🌐 Website: ${config.branding.library.website}`);
+      if (config.branding.library.email) {
+        console.log(`  📧 Contact: ${config.branding.library.email}`);
+      }
+      if (config.branding.social && (config.branding.social.x || config.branding.social.github || config.branding.social.linkedin)) {
+        console.log('  🔗 Social Media: Configured');
+      }
+      console.log(`  📄 Content License: ${config.branding.content.default_license}`);
+      if (config.deployment.analytics && config.deployment.analytics.google_analytics) {
+        console.log('  📊 Analytics: Google Analytics enabled');
+      }
+      if (config.branding.privacy.gdpr_compliant) {
+        console.log('  🔒 Privacy: GDPR compliant');
+      }
+      console.log('\n🚀 Next steps:');
+      console.log('  1. Add your content to the content/ directory');
+      console.log('  2. Update library-config/library-structure.md with your content');
+      console.log('  3. Run "make build-all" to generate PDFs from your markdown');
+      console.log('  4. Run "make dev" to preview your library locally');
+      console.log('  5. Deploy with "git add . && git commit && git push"');
+      console.log('\n📁 Configuration files created:');
+      console.log('  - branding.yaml (complete branding, social, content settings)');
+      console.log('  - deployment.yaml (domain, SEO, analytics, privacy)');
       console.log('  - library-structure.md (content organization)');
-      console.log('\nHappy publishing! 📚');
+      console.log('  - pages/ directory (about, contact, privacy, terms)');
+      console.log('\n✨ Phase 2 Complete: Your library now includes:');
+      console.log('  • Professional branding and theming');
+      console.log('  • Social media integration');
+      console.log('  • Content licensing and metadata');
+      console.log('  • Advanced navigation and search');
+      console.log('  • Privacy and GDPR compliance options');
+      console.log('  • SEO optimization and analytics');
+      console.log('\nHappy publishing! 📚 Welcome to the Universalis ecosystem!');
+      console.log('\n💡 Tip: You can re-run "make setup-template" anytime to modify your configuration.');
       
     } catch (error) {
       console.error('\n❌ Setup failed:', error.message);
@@ -104,6 +130,52 @@ class TemplateSetup {
       website = 'https://' + website;
     }
     config.branding.library.website = website;
+    
+    // Author details
+    config.branding.library.email = await this.ask('Contact email (optional)', '');
+    config.branding.library.bio = await this.ask('Author bio (optional)', 'Knowledge creator and digital library curator');
+    config.branding.library.title = await this.ask('Professional title (optional)', 'Author');
+    config.branding.library.location = await this.ask('Location (optional)', '');
+    
+    console.log('\n🔗 Social Media & Contact');
+    console.log('='.repeat(50));
+    
+    const addSocial = await this.askYesNo('Add social media links?', false);
+    if (addSocial) {
+      config.branding.social = {
+        x: await this.ask('X (Twitter) username (without @)', ''),
+        linkedin: await this.ask('LinkedIn profile URL', ''),
+        github: await this.ask('GitHub username', ''),
+        mastodon: await this.ask('Mastodon handle (optional)', ''),
+        youtube: await this.ask('YouTube channel URL (optional)', ''),
+        rss: await this.askYesNo('Enable RSS feed?', true)
+      };
+    } else {
+      config.branding.social = { rss: true };
+    }
+    
+    console.log('\n📝 Content & Publishing');
+    console.log('='.repeat(50));
+    
+    const licenses = ['CC BY 4.0', 'CC BY-SA 4.0', 'CC BY-NC 4.0', 'All Rights Reserved', 'MIT', 'Custom'];
+    console.log('Available content licenses:');
+    licenses.forEach((license, index) => {
+      console.log(`  ${index + 1}. ${license}`);
+    });
+    
+    const licenseChoice = await this.ask('Default content license (1-6)', '1');
+    const licenseIndex = parseInt(licenseChoice) - 1;
+    config.branding.content = {
+      default_license: licenses[licenseIndex] || 'CC BY 4.0',
+      show_license: await this.askYesNo('Show license on each page?', true),
+      show_dates: await this.askYesNo('Show publication dates?', true),
+      enable_comments: await this.askYesNo('Enable comments (via GitHub Discussions)?', false)
+    };
+    
+    if (config.branding.content.default_license === 'Custom') {
+      config.branding.content.custom_license_text = await this.ask('Custom license text', 'All rights reserved');
+      config.branding.content.custom_license_url = await this.ask('Custom license URL (optional)', '');
+    }
 
     console.log('\n🎨 Visual Design');
     console.log('='.repeat(50));
@@ -184,6 +256,41 @@ class TemplateSetup {
       config.deployment.analytics.google_analytics = await this.ask('Google Analytics ID (G-XXXXXXXXXX)', '');
     }
 
+    console.log('\n⚙️  Advanced Customization');
+    console.log('='.repeat(50));
+    
+    // Footer customization
+    config.branding.footer = {
+      show_copyright: await this.askYesNo('Show copyright notice in footer?', true),
+      show_powered_by: await this.askYesNo('Show "Powered by Universalis" credit?', true),
+      custom_text: await this.ask('Custom footer text (optional)', ''),
+      show_social_links: await this.askYesNo('Show social media links in footer?', true)
+    };
+    
+    // Navigation preferences
+    config.branding.navigation = {
+      show_search: await this.askYesNo('Enable search functionality?', true),
+      show_breadcrumbs: await this.askYesNo('Show breadcrumb navigation?', true),
+      sticky_header: await this.askYesNo('Use sticky header?', true),
+      show_progress: await this.askYesNo('Show reading progress indicator?', true)
+    };
+    
+    // Privacy and legal
+    console.log('\n🔒 Privacy & Legal');
+    console.log('='.repeat(50));
+    
+    config.branding.privacy = {
+      cookie_consent: await this.askYesNo('Enable cookie consent banner?', false),
+      privacy_policy: await this.askYesNo('Include privacy policy page?', true),
+      terms_of_service: await this.askYesNo('Include terms of service page?', false),
+      gdpr_compliant: await this.askYesNo('Enable GDPR compliance features?', false)
+    };
+    
+    if (config.branding.privacy.gdpr_compliant) {
+      config.branding.privacy.data_retention_days = await this.ask('Data retention period (days)', '365');
+      config.branding.privacy.contact_dpo = await this.ask('Data Protection Officer email (optional)', config.branding.library.email);
+    }
+    
     console.log('\n🚀 Deployment');
     console.log('='.repeat(50));
     

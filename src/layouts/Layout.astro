@@ -6,7 +6,7 @@ import '../styles/global.css';
 import '../styles/config-generated.css';
 import { ViewTransitions } from 'astro:transitions';
 
-const { title = "[Your Library Name]", isBookDetailPage = false } = Astro.props;
+const { title = "{{branding.library.name}}", isBookDetailPage = false } = Astro.props;
 const isLibraryPage = Astro.url.pathname.startsWith('/library');
 ---
 <!doctype html>
@@ -18,9 +18,9 @@ const isLibraryPage = Astro.url.pathname.startsWith('/library');
     }
   </style>
     <meta charset="UTF-8" />
-    <meta name="description" content="A knowledge library for the school" />
+    <meta name="description" content="{{branding.library.description}}" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/images/template-logo.png" />
+    {{#if branding.logo.enabled}}<link rel="icon" type="image/png" href="{{branding.logo.path}}" />{{else}}<link rel="icon" type="image/png" href="/images/logo.png" />{{/if}}
     <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
     <title>{title}</title>

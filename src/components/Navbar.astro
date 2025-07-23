@@ -4,8 +4,8 @@
 <nav>
   <div class="nav-container">
     <div class="logo">
-      <img src="/images/template-logo.png" alt="[Your Library Name] Logo" class="navbar-logo-img">
-      <a href="/">[Your Library Name]</a>
+      {{#if branding.logo.enabled}}<img src="{{branding.logo.path}}" alt="{{branding.library.name}} Logo" class="navbar-logo-img">{{else}}<img src="/images/logo.png" alt="{{branding.library.name}} Logo" class="navbar-logo-img">{{/if}}
+      <a href="/">{{branding.library.name}}</a>
     </div>
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span class="hamburger-box">
